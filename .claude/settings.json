@@ -1,5 +1,13 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(curl -s -c /tmp/dokploy_cookies.txt \"http://72.62.251.104:3000/api/auth/csrf\" -H \"Accept: application/json\")",
+      "Bash(curl -v -s \"http://72.62.251.104:3000/api/auth/csrf\")",
+      "Bash(ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no root@72.62.251.104 \"echo connected\")",
+      "Bash(sshpass -p 'h4KXS9G@1234' ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no root@72.62.251.104 \"echo connected && whoami\")",
+      "Bash(curl -s -c /tmp/dok_cookie.txt -b /tmp/dok_cookie.txt -X POST \"http://72.62.251.104:3000/api/auth/sign-in/email\" -H \"Content-Type: application/json\" -d '{\"\"\"\"email\"\"\"\":\"\"\"\"ikhwan@maia.com.my\"\"\"\",\"\"\"\"password\"\"\"\":\"\"\"\"h4KXS9G@1234\"\"\"\"}')",
+      "Bash(curl -s -c /tmp/dok_cookie.txt -b /tmp/dok_cookie.txt -X POST \"http://72.62.251.104:3000/api/auth/sign-in/email\" -H \"Content-Type: application/json\" -H \"Origin: http://72.62.251.104:3000\" -d '{\"\"email\"\":\"\"ikhwan@maia.com.my\"\",\"\"password\"\":\"\"h4KXS9G@1234\"\"}')"
+    ],
     "additionalDirectories": [
       "c:\\Users\\Surface Pro 8\\Documents\\mufflux\\frontend\\app\\(store)\\products",
       "c:\\Users\\Surface Pro 8\\.claude\\projects\\c--Users-Surface-Pro-8-Documents-mufflux\\memory"

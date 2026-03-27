@@ -38,12 +38,14 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DB=${MYSQL_DB}
       - JWT_SECRET=${JWT_SECRET}
-      - CLOUDINARY_URL=${CLOUDINARY_URL}
       - BILLPLZ_API_KEY=${BILLPLZ_API_KEY}
       - BILLPLZ_COLLECTION_ID=${BILLPLZ_COLLECTION_ID}
       - BILLPLZ_SANDBOX=${BILLPLZ_SANDBOX}
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
       - BACKEND_URL=${BACKEND_URL}
+      - UPLOAD_DIR=/app/uploads
+    volumes:
+      - uploads_data:/app/uploads
     ports:
       - "8000:8000"
     labels:
@@ -79,6 +81,7 @@ services:
 
 volumes:
   mysql_data:
+  uploads_data:
 
 networks:
   mufflux_net:
