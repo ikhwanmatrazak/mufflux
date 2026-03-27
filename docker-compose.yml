@@ -44,15 +44,8 @@ services:
       - UPLOAD_DIR=/app/uploads
     volumes:
       - uploads_data:/app/uploads
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.mufflux-backend.rule=Host(`api.${DOMAIN}`)"
-      - "traefik.http.routers.mufflux-backend.entrypoints=websecure"
-      - "traefik.http.routers.mufflux-backend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.mufflux-backend.loadbalancer.server.port=8000"
     networks:
       - mufflux_net
-      - dokploy-network
 
   frontend:
     build:
@@ -64,15 +57,8 @@ services:
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
       - NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.mufflux-frontend.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.mufflux-frontend.entrypoints=websecure"
-      - "traefik.http.routers.mufflux-frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.mufflux-frontend.loadbalancer.server.port=3000"
     networks:
       - mufflux_net
-      - dokploy-network
 
 volumes:
   mysql_data:
@@ -81,5 +67,3 @@ volumes:
 networks:
   mufflux_net:
     driver: bridge
-  dokploy-network:
-    external: true
