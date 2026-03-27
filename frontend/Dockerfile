@@ -7,6 +7,8 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN mkdir -p /app/public
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 RUN npm run build
 
 FROM node:20-alpine AS runner
