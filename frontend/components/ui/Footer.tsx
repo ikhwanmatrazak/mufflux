@@ -1,0 +1,97 @@
+"use client";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { Instagram, Facebook, Youtube, Phone, Mail, MapPin } from "lucide-react";
+import { Divider } from "@heroui/react";
+
+export default function Footer() {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="bg-[#060606] border-t border-[#D400A8]/20 mt-20 pb-20 md:pb-0">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                <span className="text-primary font-black text-xl">M</span>
+              </div>
+              <span className="font-black text-2xl tracking-wider text-white">MUFFLUX</span>
+            </div>
+            <p className="text-white/50 text-sm leading-relaxed">
+              Premium motorcycle exhaust systems. Built for the Road. Made to Roar. Est. 2024, Malaysia.
+            </p>
+            <div className="flex gap-3">
+              <a href="#" className="text-white/40 hover:text-primary transition-colors"><Instagram size={20} /></a>
+              <a href="#" className="text-white/40 hover:text-primary transition-colors"><Facebook size={20} /></a>
+              <a href="#" className="text-white/40 hover:text-secondary transition-colors"><Youtube size={20} /></a>
+            </div>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+            <ul className="space-y-2">
+              {[
+                { href: "/products", label: t("nav.products") },
+                { href: "/blog", label: t("nav.blog") },
+                { href: "/installation", label: t("nav.installation") },
+                { href: "/account", label: t("nav.account") },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-white/50 hover:text-primary transition-colors text-sm">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">{t("footer.contact")}</h4>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-white/50 text-sm">
+                <Phone size={14} className="text-primary shrink-0" />
+                <span>+60 11-XXXX XXXX</span>
+              </li>
+              <li className="flex items-center gap-2 text-white/50 text-sm">
+                <Mail size={14} className="text-primary shrink-0" />
+                <span>info@mufflux.com</span>
+              </li>
+              <li className="flex items-start gap-2 text-white/50 text-sm">
+                <MapPin size={14} className="text-primary shrink-0 mt-1" />
+                <span>Selangor, Malaysia</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Legal</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/privacy" className="text-white/50 hover:text-primary transition-colors text-sm">
+                  {t("footer.privacy")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-white/50 hover:text-primary transition-colors text-sm">
+                  {t("footer.terms")}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <Divider className="my-8 bg-[#D400A8]/20" />
+
+        <div className="text-center text-white/30 text-xs">
+          {t("footer.rights", { year })}
+        </div>
+      </div>
+    </footer>
+  );
+}
