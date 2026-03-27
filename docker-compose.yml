@@ -44,16 +44,15 @@ services:
       - UPLOAD_DIR=/app/uploads
     volumes:
       - uploads_data:/app/uploads
-    ports:
-      - "8000:8000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.${DOMAIN}`)"
-      - "traefik.http.routers.backend.entrypoints=websecure"
-      - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+      - "traefik.http.routers.mufflux-backend.rule=Host(`api.${DOMAIN}`)"
+      - "traefik.http.routers.mufflux-backend.entrypoints=websecure"
+      - "traefik.http.routers.mufflux-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mufflux-backend.loadbalancer.server.port=8000"
     networks:
       - mufflux_net
+      - dokploy-network
 
   frontend:
     build:
@@ -65,16 +64,15 @@ services:
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
       - NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
-    ports:
-      - "3000:3000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.frontend.entrypoints=websecure"
-      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+      - "traefik.http.routers.mufflux-frontend.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.mufflux-frontend.entrypoints=websecure"
+      - "traefik.http.routers.mufflux-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mufflux-frontend.loadbalancer.server.port=3000"
     networks:
       - mufflux_net
+      - dokploy-network
 
 volumes:
   mysql_data:
@@ -83,3 +81,5 @@ volumes:
 networks:
   mufflux_net:
     driver: bridge
+  dokploy-network:
+    external: true
