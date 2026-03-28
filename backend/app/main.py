@@ -11,7 +11,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from app.database import engine, Base
+from app.models import *  # noqa: F401,F403 — registers all models with Base
 from app.routers import auth, products, orders, payments, users, blog, admin
+
+Base.metadata.create_all(bind=engine)
 
 limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
 
