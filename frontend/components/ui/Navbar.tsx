@@ -37,13 +37,8 @@ export default function SiteNavbar() {
       maxWidth="xl"
     >
       <NavbarBrand>
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-            <span className="text-primary font-black text-xl">M</span>
-          </div>
-          <span className="font-black text-xl tracking-wider text-white hidden sm:block">
-            MUFFLUX
-          </span>
+        <Link href="/" className="flex items-center">
+          <Image src="/mufflux.jpeg" alt="Mufflux" width={120} height={40} className="object-contain" />
         </Link>
       </NavbarBrand>
 
