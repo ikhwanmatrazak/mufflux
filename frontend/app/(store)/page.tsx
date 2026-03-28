@@ -43,7 +43,7 @@ export default function HomePage() {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto animate-fade-in">
           <Chip color="secondary" variant="flat" size="sm" className="mb-6 font-bold tracking-widest uppercase text-xs">
-            Malaysia&apos;s Premier Exhaust Brand
+            Malaysian Performance Exhaust Brand
           </Chip>
 
           <h1 className="text-6xl md:text-8xl font-black leading-none mb-4">
