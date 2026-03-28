@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Button, Select, SelectItem, Slider, Accordion, AccordionItem, Spinner, Pagination } from "@heroui/react";
 import { SlidersHorizontal, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,14 @@ import { productsApi, categoriesApi, motorcycleApi } from "@/lib/api";
 import { useSearchParams, useRouter } from "next/navigation";
 
 export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center py-20"><Spinner color="primary" size="lg" /></div>}>
+      <ProductsContent />
+    </Suspense>
+  );
+}
+
+function ProductsContent() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const router = useRouter();
