@@ -6,6 +6,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     restart: always
+    networks:
+      - dokploy-network
     environment:
       - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_PORT=${MYSQL_PORT}
@@ -29,6 +31,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     restart: always
+    networks:
+      - dokploy-network
     depends_on:
       - backend
     environment:
@@ -36,6 +40,10 @@ services:
       - NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
     ports:
       - "3001:3000"
+
+networks:
+  dokploy-network:
+    external: true
 
 volumes:
   uploads_data:
