@@ -56,3 +56,21 @@ app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "mufflux-api"}
+
+
+@app.post("/setup/make-admin")
+def make_admin(email: str, secret: str):
+    from app.database import SessionLocal
+    from app.models.user import User, UserRole
+    if secret != "mufflux-setup-2024":
+        return {"error": "forbidden"}
+    db = SessionLocal()
+    try:
+        user = db.query(User).filter(User.email == email).first()
+        if not user:
+            return {"error": "user not found"}
+        user.role = UserRole.admin
+        db.commit()
+        return {"ok": True, "email": user.email, "role": user.role}
+    finally:
+        db.close()
