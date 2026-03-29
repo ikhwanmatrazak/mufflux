@@ -46,32 +46,32 @@ export default function HomePage() {
             Malaysian Performance Exhaust Brand
           </Chip>
 
-          <h1 className="text-6xl md:text-8xl font-black leading-none mb-4">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black leading-none mb-4">
             <span className="block text-white glow-primary">{t("home.tagline")}</span>
             <span className="block brand-gradient">{t("home.tagline2")}</span>
           </h1>
 
-          <p className="text-white/50 text-lg md:text-xl mt-6 mb-10 max-w-2xl mx-auto">
+          <p className="text-white/50 text-base md:text-xl mt-6 mb-8 max-w-2xl mx-auto px-2">
             Premium performance exhausts engineered for Malaysian roads. Experience the roar.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center px-4 sm:px-0">
+            <Link href="/products" className="w-full sm:w-auto">
               <Button
                 color="primary"
                 size="lg"
-                className="font-bold text-base px-10 py-6"
+                className="font-bold text-base w-full sm:w-auto px-8"
                 endContent={<ArrowRight size={18} />}
               >
                 {t("home.shopNow")}
               </Button>
             </Link>
-            <Link href="/installation">
+            <Link href="/installation" className="w-full sm:w-auto">
               <Button
                 color="secondary"
                 variant="bordered"
                 size="lg"
-                className="font-bold text-base px-10 py-6"
+                className="font-bold text-base w-full sm:w-auto px-8"
               >
                 {t("nav.installation")}
               </Button>
@@ -79,7 +79,7 @@ export default function HomePage() {
           </div>
 
           {/* Stats */}
-          <div className="flex justify-center gap-12 mt-16 pt-8 border-t border-white/10">
+          <div className="flex justify-center gap-6 sm:gap-12 mt-12 pt-8 border-t border-white/10">
             {[
               { value: "500+", label: "Products" },
               { value: "10K+", label: "Happy Riders" },

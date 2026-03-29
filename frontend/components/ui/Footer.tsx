@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { Instagram, Facebook, Youtube, Phone, Mail, MapPin } from "lucide-react";
 import { Divider } from "@heroui/react";
@@ -10,20 +11,15 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#060606] border-t border-[#D400A8]/20 mt-20 pb-20 md:pb-0">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="text-primary font-black text-xl">M</span>
-              </div>
-              <span className="font-black text-2xl tracking-wider text-white">MUFFLUX</span>
-            </div>
+          <div className="col-span-2 md:col-span-1 space-y-4">
+            <Image src="/mufflux.jpeg" alt="Mufflux" width={110} height={36} className="object-contain" />
             <p className="text-white/50 text-sm leading-relaxed">
-              Premium motorcycle exhaust systems. Built for the Road. Made to Roar. Est. 2024, Malaysia.
+              Malaysian Performance Exhaust Brand. PERFORMANCE. MEROKET. Est. 2024.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <a href="#" className="text-white/40 hover:text-primary transition-colors"><Instagram size={20} /></a>
               <a href="#" className="text-white/40 hover:text-primary transition-colors"><Facebook size={20} /></a>
               <a href="#" className="text-white/40 hover:text-secondary transition-colors"><Youtube size={20} /></a>
@@ -32,7 +28,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Quick Links</h4>
             <ul className="space-y-2">
               {[
                 { href: "/products", label: t("nav.products") },
@@ -51,7 +47,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">{t("footer.contact")}</h4>
+            <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">{t("footer.contact")}</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/50 text-sm">
                 <Phone size={14} className="text-primary shrink-0" />
@@ -62,7 +58,7 @@ export default function Footer() {
                 <span>info@mufflux.com</span>
               </li>
               <li className="flex items-start gap-2 text-white/50 text-sm">
-                <MapPin size={14} className="text-primary shrink-0 mt-1" />
+                <MapPin size={14} className="text-primary shrink-0 mt-0.5" />
                 <span>Selangor, Malaysia</span>
               </li>
             </ul>
@@ -70,7 +66,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Legal</h4>
+            <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-widest">Legal</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/privacy" className="text-white/50 hover:text-primary transition-colors text-sm">

@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-in-out",

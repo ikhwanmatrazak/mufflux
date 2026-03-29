@@ -52,31 +52,9 @@ body {
   box-shadow: 0 8px 32px rgba(212, 0, 168, 0.25);
 }
 
-/* WhatsApp floating button */
-.whatsapp-float {
-  position: fixed;
-  bottom: 90px;
-  right: 24px;
-  z-index: 1000;
-  animation: pulseGlow 2s ease-in-out infinite;
-}
-
-/* Mobile bottom nav */
-.mobile-bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  background: #111111;
-  border-top: 1px solid #222;
-  padding: 8px 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-@media (min-width: 768px) {
-  .mobile-bottom-nav { display: none; }
+/* Prevent content from being hidden behind mobile bottom nav */
+@media (max-width: 767px) {
+  main { padding-bottom: env(safe-area-inset-bottom, 0px); }
 }
 
 /* Section divider */
