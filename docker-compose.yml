@@ -25,13 +25,6 @@ services:
       - uploads_data:/app/uploads
     ports:
       - "8000:8000"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=dokploy-network"
-      - "traefik.http.routers.mufflux-backend.rule=Host(`api.mufflux.lightningcloud.my`)"
-      - "traefik.http.routers.mufflux-backend.entrypoints=websecure"
-      - "traefik.http.routers.mufflux-backend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.mufflux-backend.loadbalancer.server.port=8000"
 
   frontend:
     build:
@@ -47,13 +40,6 @@ services:
       - NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
     ports:
       - "3001:3000"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=dokploy-network"
-      - "traefik.http.routers.mufflux-frontend.rule=Host(`mufflux.lightningcloud.my`)"
-      - "traefik.http.routers.mufflux-frontend.entrypoints=websecure"
-      - "traefik.http.routers.mufflux-frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.mufflux-frontend.loadbalancer.server.port=3000"
 
 networks:
   dokploy-network:
