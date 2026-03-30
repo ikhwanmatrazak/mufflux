@@ -128,6 +128,27 @@ export const installationApi = {
 
 export const adminApi = {
   dashboard: () => api.get("/admin/dashboard"),
+  listOrders: (params?: any) => api.get("/admin/orders", { params }),
+  getOrder: (id: number) => api.get(`/admin/orders/${id}`),
+  downloadReport: (params?: { start_date?: string; end_date?: string }) => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
+    const query = new URLSearchParams();
+    if (params?.start_date) query.set("start_date", params.start_date);
+    if (params?.end_date) query.set("end_date", params.end_date);
+    const url = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/admin/reports/orders?${query.toString()}`;
+    const a = document.createElement("a");
+    a.href = url;
+    // Use fetch to download with auth header
+    return fetch(url, { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.blob())
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        a.href = blobUrl;
+        a.download = `mufflux_orders_${new Date().toISOString().slice(0, 10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(blobUrl);
+      });
+  },
 };
 
 export const shippingApi = {
