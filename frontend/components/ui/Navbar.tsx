@@ -36,12 +36,20 @@ export default function SiteNavbar() {
       className="bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#D400A8]/20 sticky top-0 z-50"
       maxWidth="xl"
     >
+      {/* Logo */}
       <NavbarBrand>
         <Link href="/" className="flex items-center">
-          <Image src="/mufflux.jpeg" alt="Mufflux" width={120} height={40} className="object-contain" />
+          <Image
+            src="/mufflux.jpeg"
+            alt="Mufflux"
+            width={150}
+            height={50}
+            className="object-contain h-10 md:h-10 w-auto"
+          />
         </Link>
       </NavbarBrand>
 
+      {/* Desktop nav links */}
       <NavbarContent className="hidden md:flex gap-6" justify="center">
         <NavbarItem>
           <Link href="/" className="text-white/80 hover:text-primary transition-colors font-medium">
@@ -65,9 +73,10 @@ export default function SiteNavbar() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent justify="end" className="gap-2">
-        {/* Language Switcher */}
-        <NavbarItem>
+      {/* Right side actions */}
+      <NavbarContent justify="end" className="gap-1">
+        {/* Language Switcher — desktop only */}
+        <NavbarItem className="hidden md:flex">
           <Dropdown>
             <DropdownTrigger>
               <Button isIconOnly variant="light" size="sm" className="text-white/70">
@@ -85,8 +94,8 @@ export default function SiteNavbar() {
           </Dropdown>
         </NavbarItem>
 
-        {/* Wishlist */}
-        <NavbarItem className="hidden sm:flex">
+        {/* Wishlist — desktop only */}
+        <NavbarItem className="hidden md:flex">
           <Link href="/account/wishlist">
             <Button isIconOnly variant="light" size="sm" className="text-white/70 hover:text-primary">
               <Heart size={18} />
@@ -105,8 +114,8 @@ export default function SiteNavbar() {
           </Link>
         </NavbarItem>
 
-        {/* User */}
-        <NavbarItem>
+        {/* User — desktop only */}
+        <NavbarItem className="hidden md:flex">
           {user ? (
             <Dropdown>
               <DropdownTrigger>
@@ -142,16 +151,19 @@ export default function SiteNavbar() {
           )}
         </NavbarItem>
 
-        <NavbarMenuToggle className="md:hidden text-white" />
+        {/* Mobile hamburger */}
+        <NavbarItem className="md:hidden">
+          <NavbarMenuToggle className="text-white" />
+        </NavbarItem>
       </NavbarContent>
 
+      {/* Mobile slide-down menu */}
       <NavbarMenu className="bg-[#0A0A0A]/98 pt-6 gap-4">
         {[
           { href: "/", label: t("nav.home") },
           { href: "/products", label: t("nav.products") },
           { href: "/installation", label: t("nav.installation") },
           { href: "/blog", label: t("nav.blog") },
-          { href: "/account", label: t("nav.account") },
         ].map((item) => (
           <NavbarMenuItem key={item.href}>
             <Link href={item.href} className="text-white text-lg font-semibold w-full block py-2 border-b border-[#222]">
@@ -159,6 +171,35 @@ export default function SiteNavbar() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          {user ? (
+            <div className="flex flex-col gap-2 pt-2">
+              <Link href="/account" className="text-white text-lg font-semibold py-2 border-b border-[#222] block">
+                {t("nav.account")}
+              </Link>
+              <button onClick={handleLogout} className="text-left text-red-400 text-lg font-semibold py-2">
+                {t("nav.logout")}
+              </button>
+            </div>
+          ) : (
+            <Link href="/login" className="block mt-2">
+              <Button color="primary" className="w-full font-semibold">
+                {t("nav.login")}
+              </Button>
+            </Link>
+          )}
+        </NavbarMenuItem>
+        {/* Language switcher in mobile menu */}
+        <NavbarMenuItem>
+          <div className="flex gap-3 pt-2">
+            <button onClick={() => handleLanguage("en")} className={`text-sm font-medium ${language === "en" ? "text-primary" : "text-white/60"}`}>
+              🇬🇧 English
+            </button>
+            <button onClick={() => handleLanguage("bm")} className={`text-sm font-medium ${language === "bm" ? "text-primary" : "text-white/60"}`}>
+              🇲🇾 BM
+            </button>
+          </div>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
