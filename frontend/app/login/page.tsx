@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { Button, Input, Card, CardBody } from "@heroui/react";
-import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@heroui/react";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { authApi } from "@/lib/api";
@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPwd, setShowPwd] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [focused, setFocused] = useState<string | null>(null);
 
   const handleLogin = async () => {
     if (!form.email || !form.password) { toast.error(t("errors.required")); return; }
@@ -31,42 +32,111 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A] px-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A] px-4 relative overflow-hidden">
+      {/* Background glow blobs */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#D400A8]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#7B00FF]/8 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="w-full max-w-sm relative z-10">
+        {/* Logo */}
+        <div className="text-center mb-10">
           <Link href="/">
-            <span className="font-black text-3xl tracking-wider text-white">MUFFLUX</span>
+            <div className="inline-block">
+              <span className="font-black text-4xl tracking-widest text-white drop-shadow-lg">MUFFLUX</span>
+              <div className="h-0.5 bg-gradient-to-r from-transparent via-[#D400A8] to-transparent mt-1" />
+            </div>
           </Link>
-          <p className="text-white/40 mt-2">Sign in to your account</p>
+          <p className="text-white/40 mt-3 text-sm font-medium tracking-wide">Sign in to your account</p>
         </div>
 
-        <Card className="bg-[#111] border border-[#222]">
-          <CardBody className="p-8 space-y-4">
-            <Input
-              label={t("account.email")} type="email" variant="bordered"
-              value={form.email} onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
-              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-            />
-            <Input
-              label="Password" type={showPwd ? "text" : "password"} variant="bordered"
-              value={form.password} onChange={(e) => setForm(f => ({ ...f, password: e.target.value }))}
-              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-              endContent={
-                <button onClick={() => setShowPwd(!showPwd)} className="text-white/40 hover:text-white">
+        {/* Card */}
+        <div className="bg-[#111]/80 backdrop-blur-sm border border-[#D400A8]/20 rounded-2xl p-8 shadow-2xl shadow-[#D400A8]/5">
+          <div className="space-y-5">
+
+            {/* Email field */}
+            <div>
+              <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-white/50"}`}>
+                Email
+              </label>
+              <div className={`flex items-center gap-3 bg-[#1a1a1a] rounded-xl px-4 py-3 border transition-all duration-200 ${
+                focused === "email" ? "border-[#D400A8] shadow-[0_0_0_3px_rgba(212,0,168,0.1)]" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
+              }`}>
+                <Mail size={16} className={`shrink-0 transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-white/30"}`} />
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={form.email}
+                  onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
+                  onFocus={() => setFocused("email")}
+                  onBlur={() => setFocused(null)}
+                  onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                  className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/20 font-medium"
+                />
+              </div>
+            </div>
+
+            {/* Password field */}
+            <div>
+              <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-white/50"}`}>
+                Password
+              </label>
+              <div className={`flex items-center gap-3 bg-[#1a1a1a] rounded-xl px-4 py-3 border transition-all duration-200 ${
+                focused === "password" ? "border-[#D400A8] shadow-[0_0_0_3px_rgba(212,0,168,0.1)]" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
+              }`}>
+                <Lock size={16} className={`shrink-0 transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-white/30"}`} />
+                <input
+                  type={showPwd ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={form.password}
+                  onChange={(e) => setForm(f => ({ ...f, password: e.target.value }))}
+                  onFocus={() => setFocused("password")}
+                  onBlur={() => setFocused(null)}
+                  onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                  className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/20 font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPwd(!showPwd)}
+                  className="text-white/30 hover:text-[#D400A8] transition-colors shrink-0"
+                >
                   {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
-              }
-            />
-            <Button color="primary" size="lg" className="w-full font-bold" isLoading={loading} onPress={handleLogin}>
-              {t("nav.login")}
-            </Button>
+              </div>
+            </div>
 
-            <p className="text-center text-white/40 text-sm">
-              Don&apos;t have an account?{" "}
-              <Link href="/register" className="text-primary hover:underline font-semibold">Register</Link>
-            </p>
-          </CardBody>
-        </Card>
+            {/* Login button */}
+            <Button
+              color="primary"
+              size="lg"
+              className="w-full font-bold text-base mt-2 h-12 rounded-xl"
+              isLoading={loading}
+              onPress={handleLogin}
+            >
+              {loading ? "Signing in..." : "Login"}
+            </Button>
+          </div>
+
+          {/* Divider */}
+          <div className="flex items-center gap-3 my-5">
+            <div className="flex-1 h-px bg-[#222]" />
+            <span className="text-white/20 text-xs">or</span>
+            <div className="flex-1 h-px bg-[#222]" />
+          </div>
+
+          <p className="text-center text-white/40 text-sm">
+            Don&apos;t have an account?{" "}
+            <Link href="/register" className="text-[#D400A8] hover:text-[#ff00cc] font-semibold transition-colors">
+              Register
+            </Link>
+          </p>
+        </div>
+
+        {/* Back to store */}
+        <p className="text-center mt-6">
+          <Link href="/" className="text-white/25 hover:text-white/50 text-xs transition-colors">
+            ← Back to store
+          </Link>
+        </p>
       </div>
     </div>
   );
