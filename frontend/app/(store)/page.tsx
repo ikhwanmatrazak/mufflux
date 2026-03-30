@@ -52,7 +52,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-white/50 text-base md:text-xl mt-6 mb-8 max-w-2xl mx-auto px-2">
-            Premium performance exhausts engineered for Malaysian roads. Experience the roar.
+            Malaysian Performance Exhaust Brand — PERFORMANCE. MEROKET.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center px-4 sm:px-0">

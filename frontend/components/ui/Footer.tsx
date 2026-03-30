@@ -51,7 +51,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/50 text-sm">
                 <Phone size={14} className="text-primary shrink-0" />
-                <span>+60 11-XXXX XXXX</span>
+                <span>011-70099733</span>
               </li>
               <li className="flex items-center gap-2 text-white/50 text-sm">
                 <Mail size={14} className="text-primary shrink-0" />
@@ -59,7 +59,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-white/50 text-sm">
                 <MapPin size={14} className="text-primary shrink-0 mt-0.5" />
-                <span>Selangor, Malaysia</span>
+                <span>KL, Selangor, Negeri Sembilan</span>
               </li>
             </ul>
           </div>

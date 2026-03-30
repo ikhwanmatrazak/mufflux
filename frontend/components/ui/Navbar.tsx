@@ -57,7 +57,7 @@ export default function SiteNavbar() {
               alt="Mufflux"
               width={160}
               height={54}
-              className="object-contain h-11 w-auto"
+              className="object-contain h-14 md:h-11 w-auto"
               priority
             />
           </Link>
