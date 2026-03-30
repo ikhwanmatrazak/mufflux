@@ -8,6 +8,7 @@ services:
     restart: always
     networks:
       - dokploy-network
+      - internal
     environment:
       - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_PORT=${MYSQL_PORT}
@@ -23,8 +24,6 @@ services:
       - UPLOAD_DIR=/app/uploads
     volumes:
       - uploads_data:/app/uploads
-    ports:
-      - "8000:8000"
 
   frontend:
     build:
@@ -33,17 +32,18 @@ services:
     restart: always
     networks:
       - dokploy-network
+      - internal
     depends_on:
       - backend
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
       - NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
-    ports:
-      - "3001:3000"
 
 networks:
   dokploy-network:
     external: true
+  internal:
+    driver: bridge
 
 volumes:
   uploads_data:
