@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useUserStore } from "@/store/userStore";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingBag, Users, BookOpen, Calendar, Settings, LogOut, ChevronRight, FileText } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingBag, Users, BookOpen, Calendar, Settings, LogOut, ChevronRight } from "lucide-react";
 import { Button } from "@heroui/react";
 
 const NAV = [
@@ -13,7 +13,6 @@ const NAV = [
   { href: "/customers", icon: Users, label: "Customers" },
   { href: "/blog-admin", icon: BookOpen, label: "Blog" },
   { href: "/bookings", icon: Calendar, label: "Bookings" },
-  { href: "/claims-admin", icon: FileText, label: "Claims" },
   { href: "/settings-admin", icon: Settings, label: "Settings" },
 ];
 

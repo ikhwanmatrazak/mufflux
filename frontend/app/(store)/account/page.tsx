@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { Tabs, Tab, Progress, Chip, Card, CardBody, Button } from "@heroui/react";
-import { Package, MapPin, Heart, User, Star, FileText } from "lucide-react";
+import { Package, MapPin, Heart, User, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/userStore";
 import { useRouter } from "next/navigation";
@@ -57,7 +57,6 @@ export default function AccountPage() {
               { href: "/account/addresses", icon: MapPin, label: t("account.myAddresses"), color: "text-secondary" },
               { href: "/account/wishlist", icon: Heart, label: t("account.myWishlist"), color: "text-danger" },
               { href: "/account/profile", icon: User, label: t("account.profile"), color: "text-success" },
-              { href: "/account/claims", icon: FileText, label: "My Claims", color: "text-warning" },
             ].map((item) => (
               <Link key={item.href} href={item.href}>
                 <Card className="bg-[#111] border border-[#222] hover:border-[#D400A8]/40 transition-colors cursor-pointer">

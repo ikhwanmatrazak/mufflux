@@ -9,7 +9,6 @@ from app.models.order import (
     ShippingRate, InstallationBooking, DiscountCode
 )
 from app.models.blog import BlogPost
-from app.models.claim import Claim, ClaimAttachment
 
 __all__ = [
     "User", "Address", "LoyaltyTransaction",
@@ -19,5 +18,4 @@ __all__ = [
     "Order", "OrderItem", "OrderAddress", "Payment",
     "ShippingRate", "InstallationBooking", "DiscountCode",
     "BlogPost",
-    "Claim", "ClaimAttachment",
 ]
