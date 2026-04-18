@@ -154,3 +154,58 @@ export const adminApi = {
 export const shippingApi = {
   rates: (params?: any) => api.get("/shipping/rates", { params }),
 };
+
+export const claimsApi = {
+  // Extract claim details from an uploaded file using AI
+  extract: (file: File) => {
+    const form = new FormData();
+    form.append("file", file);
+    return api.post("/claims/extract", form, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
+
+  // Submit a new claim (with optional file attachments)
+  create: (data: {
+    title: string;
+    claim_type: string;
+    description?: string;
+    amount?: number;
+  }, files?: File[]) => {
+    const form = new FormData();
+    form.append("title", data.title);
+    form.append("claim_type", data.claim_type);
+    if (data.description) form.append("description", data.description);
+    if (data.amount != null) form.append("amount", String(data.amount));
+    if (files) files.forEach((f) => form.append("files", f));
+    return api.post("/claims", form, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
+
+  // Get current user's claims
+  list: () => api.get("/claims/my"),
+
+  // Get single claim
+  get: (id: number) => api.get(`/claims/${id}`),
+
+  // Update a pending claim
+  update: (id: number, data: any) => api.put(`/claims/${id}`, data),
+
+  // Add attachment to existing claim
+  addAttachment: (claimId: number, file: File) => {
+    const form = new FormData();
+    form.append("file", file);
+    return api.post(`/claims/${claimId}/attachments`, form, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
+
+  // Admin: list all claims
+  adminList: (status?: string) =>
+    api.get("/claims/admin/all", { params: status ? { status } : {} }),
+
+  // Admin: update claim status/notes
+  adminUpdate: (id: number, data: { status?: string; admin_notes?: string }) =>
+    api.put(`/claims/admin/${id}`, data),
+};

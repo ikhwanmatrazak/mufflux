@@ -30,6 +30,7 @@ class User(Base):
     blog_posts = relationship("BlogPost", back_populates="author")
     loyalty_transactions = relationship("LoyaltyTransaction", back_populates="user", cascade="all, delete-orphan")
     installation_bookings = relationship("InstallationBooking", back_populates="user")
+    claims = relationship("Claim", back_populates="user", cascade="all, delete-orphan")
 
 
 class Address(Base):
