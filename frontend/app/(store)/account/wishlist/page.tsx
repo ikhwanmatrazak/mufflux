@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { Button } from "@heroui/react";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
@@ -28,7 +28,7 @@ export default function WishlistPage() {
       {items.length === 0 ? (
         <div className="text-center py-20">
           <Heart size={64} className="text-white/10 mx-auto mb-4" />
-          <p className="text-white/40 mb-4">{t("account.noWishlist")}</p>
+          <p className="text-foreground/40 mb-4">{t("account.noWishlist")}</p>
           <Link href="/products"><Button color="primary">Browse Products</Button></Link>
         </div>
       ) : (
@@ -41,7 +41,7 @@ export default function WishlistPage() {
                 <Link href={`/products/${product.slug}`}>
                   <div className="aspect-square bg-[#0d0d0d] relative">
                     {img ? <Image src={img.image_url} alt={name} fill className="object-cover" /> : (
-                      <div className="w-full h-full flex items-center justify-center"><span className="text-white/20 font-black">MFX</span></div>
+                      <div className="w-full h-full flex items-center justify-center"><span className="text-foreground/20 font-black">MFX</span></div>
                     )}
                   </div>
                   <div className="p-3">

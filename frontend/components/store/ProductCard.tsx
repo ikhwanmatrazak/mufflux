@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { Card, CardBody, CardFooter, Button, Badge, Chip, Tooltip, Skeleton } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,7 +89,7 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <span className="text-white/20 text-4xl font-black">MFX</span>
+                <span className="text-foreground/20 text-4xl font-black">MFX</span>
               </div>
             )}
 
@@ -105,7 +105,7 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
               <button
                 onClick={handleWishlist}
                 className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all
-                  ${inWishlist ? "bg-primary text-white" : "bg-black/60 text-white/60 hover:text-primary"}`}
+                  ${inWishlist ? "bg-primary text-white" : "bg-black/60 text-foreground/60 hover:text-primary"}`}
               >
                 <Heart size={14} fill={inWishlist ? "currentColor" : "none"} />
               </button>
@@ -119,13 +119,13 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
               {[1, 2, 3, 4, 5].map((s) => (
                 <Star key={s} size={10} className="text-secondary" fill="currentColor" />
               ))}
-              <span className="text-white/30 text-xs ml-1">(0)</span>
+              <span className="text-foreground/30 text-xs ml-1">(0)</span>
             </div>
 
             <div className="flex items-center gap-2">
               <span className="text-primary font-bold text-lg">RM{Number(product.price).toFixed(2)}</span>
               {isOnSale && (
-                <span className="text-white/30 line-through text-sm">RM{Number(product.compare_price).toFixed(2)}</span>
+                <span className="text-foreground/30 line-through text-sm">RM{Number(product.compare_price).toFixed(2)}</span>
               )}
             </div>
           </div>

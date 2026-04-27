@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { Button, Input, Textarea, Card, CardBody } from "@heroui/react";
 import { Wrench, Calendar, Clock, MapPin, CheckCircle } from "lucide-react";
@@ -35,7 +35,7 @@ export default function InstallationPage() {
           <Wrench size={40} className="text-primary" />
         </div>
         <h1 className="text-4xl font-black text-white">{t("installation.title")}</h1>
-        <p className="text-white/50 mt-2 text-lg">{t("installation.subtitle")}</p>
+        <p className="text-foreground/50 mt-2 text-lg">{t("installation.subtitle")}</p>
       </div>
 
       {/* Features */}
@@ -49,7 +49,7 @@ export default function InstallationPage() {
             <CardBody className="flex flex-col items-center text-center gap-2 py-6">
               <f.icon size={28} className="text-primary" />
               <p className="text-white font-semibold">{f.title}</p>
-              <p className="text-white/40 text-sm">{f.desc}</p>
+              <p className="text-foreground/40 text-sm">{f.desc}</p>
             </CardBody>
           </Card>
         ))}
@@ -61,7 +61,7 @@ export default function InstallationPage() {
           <CardBody className="flex flex-col items-center gap-4 py-12">
             <CheckCircle size={60} className="text-success" />
             <h2 className="text-2xl font-black text-white">{t("installation.success")}</h2>
-            <p className="text-white/50">We'll contact you within 24 hours to confirm your booking.</p>
+            <p className="text-foreground/50">We'll contact you within 24 hours to confirm your booking.</p>
             <Link href="/products"><Button color="primary" className="mt-2">Continue Shopping</Button></Link>
           </CardBody>
         </Card>
@@ -78,26 +78,26 @@ export default function InstallationPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-white/60 text-sm mb-2 flex items-center gap-2"><Calendar size={14} />{t("installation.selectDate")}</label>
+                <label className="text-foreground/60 text-sm mb-2 flex items-center gap-2"><Calendar size={14} />{t("installation.selectDate")}</label>
                 <Input type="date" variant="bordered" value={form.preferred_date}
                   onChange={(e) => setForm(f => ({ ...f, preferred_date: e.target.value }))}
                   min={new Date().toISOString().split("T")[0]} />
               </div>
               <div>
-                <label className="text-white/60 text-sm mb-2 flex items-center gap-2"><Clock size={14} />{t("installation.selectTime")}</label>
+                <label className="text-foreground/60 text-sm mb-2 flex items-center gap-2"><Clock size={14} />{t("installation.selectTime")}</label>
                 <Input type="time" variant="bordered" value={form.preferred_time}
                   onChange={(e) => setForm(f => ({ ...f, preferred_time: e.target.value }))} />
               </div>
             </div>
 
             <div>
-              <label className="text-white/60 text-sm mb-2 flex items-center gap-2"><MapPin size={14} />{t("installation.location")}</label>
+              <label className="text-foreground/60 text-sm mb-2 flex items-center gap-2"><MapPin size={14} />{t("installation.location")}</label>
               <Input variant="bordered" placeholder="e.g. Shah Alam Workshop" value={form.workshop_location}
                 onChange={(e) => setForm(f => ({ ...f, workshop_location: e.target.value }))} />
             </div>
 
             <div>
-              <label className="text-white/60 text-sm mb-2">{t("installation.notes")}</label>
+              <label className="text-foreground/60 text-sm mb-2">{t("installation.notes")}</label>
               <Textarea variant="bordered" placeholder="Any additional notes..." value={form.notes}
                 onChange={(e) => setForm(f => ({ ...f, notes: e.target.value }))} rows={3} />
             </div>

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import {
   Button, Badge, Avatar, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,
 } from "@heroui/react";
-import { ShoppingCart, Heart, User, Globe, LogOut, Settings, Package, X } from "lucide-react";
+import { ShoppingCart, Heart, User, Globe, LogOut, Settings, Package, X, Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import { useUserStore } from "@/store/userStore";
 import { useUIStore } from "@/store/uiStore";
 import { useRouter } from "next/navigation";
 import i18n from "@/lib/i18n";
+import { useTheme } from "next-themes";
 
 export default function SiteNavbar() {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function SiteNavbar() {
   const { user, logout } = useUserStore();
   const { language, setLanguage } = useUIStore();
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   const handleLanguage = (lang: "en" | "bm") => {
     setLanguage(lang);
@@ -44,7 +46,7 @@ export default function SiteNavbar() {
   return (
     <>
       {/* ── Top bar ── */}
-      <nav className="sticky top-0 z-50 bg-gradient-to-r from-[#1a0020] via-[#0A0A0A] to-[#1a0020] border-b border-[#D400A8]/30 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 bg-content1 dark:bg-gradient-to-r dark:from-[#1a0020] dark:via-[#0A0A0A] dark:to-[#1a0020] border-b border-[#D400A8]/30 backdrop-blur-md">
         <div className="relative flex items-center justify-center h-16 px-4 max-w-screen-xl mx-auto">
 
           {/* Logo — centered on mobile, left on desktop */}
@@ -68,7 +70,7 @@ export default function SiteNavbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white/80 hover:text-[#D400A8] transition-colors font-medium text-sm"
+                className="text-foreground/80 hover:text-[#D400A8] transition-colors font-medium text-sm"
               >
                 {link.label}
               </Link>
@@ -77,13 +79,23 @@ export default function SiteNavbar() {
 
           {/* Desktop right actions */}
           <div className="hidden md:flex items-center gap-2 ml-auto">
+            <Button
+              isIconOnly
+              variant="light"
+              size="sm"
+              className="text-foreground/70"
+              onPress={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </Button>
             <Dropdown>
               <DropdownTrigger>
-                <Button isIconOnly variant="light" size="sm" className="text-white/70">
+                <Button isIconOnly variant="light" size="sm" className="text-foreground/70">
                   <Globe size={18} />
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu className="bg-[#1a1a1a] border border-[#333]">
+              <DropdownMenu className="bg-content2 border border-divider">
                 <DropdownItem key="en" onPress={() => handleLanguage("en")} className={language === "en" ? "text-primary" : ""}>
                   🇬🇧 English
                 </DropdownItem>
@@ -93,13 +105,13 @@ export default function SiteNavbar() {
               </DropdownMenu>
             </Dropdown>
             <Link href="/account/wishlist">
-              <Button isIconOnly variant="light" size="sm" className="text-white/70 hover:text-[#D400A8]">
+              <Button isIconOnly variant="light" size="sm" className="text-foreground/70 hover:text-[#D400A8]">
                 <Heart size={18} />
               </Button>
             </Link>
             <Link href="/cart">
               <Badge content={cartCount > 0 ? cartCount : undefined} color="primary" size="sm">
-                <Button isIconOnly variant="light" size="sm" className="text-white/70 hover:text-[#D400A8]">
+                <Button isIconOnly variant="light" size="sm" className="text-foreground/70 hover:text-[#D400A8]">
                   <ShoppingCart size={18} />
                 </Button>
               </Badge>
@@ -109,7 +121,7 @@ export default function SiteNavbar() {
                 <DropdownTrigger>
                   <Avatar name={user.name.charAt(0)} size="sm" className="cursor-pointer bg-primary/20 text-primary" />
                 </DropdownTrigger>
-                <DropdownMenu className="bg-[#1a1a1a] border border-[#333]">
+                <DropdownMenu className="bg-content2 border border-divider">
                   <DropdownItem key="account" startContent={<User size={14} />}>
                     <Link href="/account">{t("nav.account")}</Link>
                   </DropdownItem>
@@ -137,17 +149,17 @@ export default function SiteNavbar() {
 
           {/* Mobile — 3-line hamburger, absolute right */}
           <button
-            className="md:hidden absolute right-4 flex flex-col gap-[5px] p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="md:hidden absolute right-4 flex flex-col gap-[5px] p-2 rounded-lg hover:bg-foreground/10 transition-colors"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
             {open ? (
-              <X size={22} className="text-white" />
+              <X size={22} className="text-foreground" />
             ) : (
               <>
-                <span className="block w-6 h-[2px] bg-white rounded-full" />
+                <span className="block w-6 h-[2px] bg-foreground rounded-full" />
                 <span className="block w-6 h-[2px] bg-[#D400A8] rounded-full" />
-                <span className="block w-6 h-[2px] bg-white rounded-full" />
+                <span className="block w-6 h-[2px] bg-foreground rounded-full" />
               </>
             )}
           </button>
@@ -163,14 +175,14 @@ export default function SiteNavbar() {
             onClick={close}
           />
           {/* panel */}
-          <div className="md:hidden fixed top-16 right-0 z-40 w-64 bg-[#0f0018]/97 backdrop-blur-xl border-l border-b border-[#D400A8]/30 rounded-bl-2xl shadow-2xl shadow-[#D400A8]/10 animate-in slide-in-from-top-2 fade-in duration-200">
+          <div className="md:hidden fixed top-16 right-0 z-40 w-64 bg-content1/97 dark:bg-[#0f0018]/97 backdrop-blur-xl border-l border-b border-[#D400A8]/30 rounded-bl-2xl shadow-2xl shadow-[#D400A8]/10 animate-in slide-in-from-top-2 fade-in duration-200">
             <div className="flex flex-col py-3">
               {/* Nav links */}
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-6 py-3 text-white/90 font-semibold text-base hover:text-[#D400A8] hover:bg-white/5 transition-colors border-b border-white/5"
+                  className="px-6 py-3 text-foreground/90 font-semibold text-base hover:text-[#D400A8] hover:bg-foreground/5 transition-colors border-b border-divider"
                   onClick={close}
                 >
                   {link.label}
@@ -180,7 +192,7 @@ export default function SiteNavbar() {
               {/* Cart */}
               <Link
                 href="/cart"
-                className="px-6 py-3 text-white/90 font-semibold text-base hover:text-[#D400A8] hover:bg-white/5 transition-colors border-b border-white/5 flex items-center gap-2"
+                className="px-6 py-3 text-foreground/90 font-semibold text-base hover:text-[#D400A8] hover:bg-foreground/5 transition-colors border-b border-divider flex items-center gap-2"
                 onClick={close}
               >
                 <ShoppingCart size={16} />
@@ -198,7 +210,7 @@ export default function SiteNavbar() {
                   <>
                     <Link
                       href="/account"
-                      className="block px-2 py-2.5 text-white/80 font-medium text-sm hover:text-[#D400A8] transition-colors"
+                      className="block px-2 py-2.5 text-foreground/80 font-medium text-sm hover:text-[#D400A8] transition-colors"
                       onClick={close}
                     >
                       {t("nav.account")}
@@ -219,19 +231,26 @@ export default function SiteNavbar() {
                 )}
               </div>
 
-              {/* Language */}
-              <div className="flex gap-4 px-6 pt-2 pb-3 border-t border-white/10 mt-1">
+              {/* Theme + Language */}
+              <div className="flex gap-4 px-6 pt-2 pb-3 border-t border-foreground/10 mt-1 items-center justify-between">
                 <button
                   onClick={() => handleLanguage("en")}
-                  className={`text-xs font-semibold transition-colors ${language === "en" ? "text-[#D400A8]" : "text-white/40 hover:text-white/70"}`}
+                  className={`text-xs font-semibold transition-colors ${language === "en" ? "text-[#D400A8]" : "text-foreground/40 hover:text-foreground/70"}`}
                 >
                   🇬🇧 EN
                 </button>
                 <button
                   onClick={() => handleLanguage("bm")}
-                  className={`text-xs font-semibold transition-colors ${language === "bm" ? "text-[#D400A8]" : "text-white/40 hover:text-white/70"}`}
+                  className={`text-xs font-semibold transition-colors ${language === "bm" ? "text-[#D400A8]" : "text-foreground/40 hover:text-foreground/70"}`}
                 >
                   🇲🇾 BM
+                </button>
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="text-foreground/60 hover:text-foreground transition-colors"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                 </button>
               </div>
             </div>

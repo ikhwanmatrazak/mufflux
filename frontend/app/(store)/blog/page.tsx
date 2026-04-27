@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import { Spinner, Card, CardBody } from "@heroui/react";
 import Image from "next/image";
@@ -25,7 +25,7 @@ export default function BlogPage() {
       {loading ? (
         <div className="flex justify-center py-20"><Spinner color="primary" size="lg" /></div>
       ) : posts.length === 0 ? (
-        <p className="text-center text-white/40 py-20">{t("blog.noPostsYet")}</p>
+        <p className="text-center text-foreground/40 py-20">{t("blog.noPostsYet")}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => {
@@ -45,7 +45,7 @@ export default function BlogPage() {
                     )}
                     <div className="p-5">
                       <h2 className="text-white font-bold line-clamp-2 mb-2">{title}</h2>
-                      <p className="text-white/40 text-xs">
+                      <p className="text-foreground/40 text-xs">
                         {t("blog.publishedOn")} {post.published_at ? new Date(post.published_at).toLocaleDateString("en-MY", { year: "numeric", month: "long", day: "numeric" }) : "—"}
                       </p>
                       <span className="inline-block mt-3 text-primary text-sm font-semibold">{t("blog.readMore")} →</span>

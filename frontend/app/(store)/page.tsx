@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import { Button, Card, CardBody, Chip, Spinner } from "@heroui/react";
 import Image from "next/image";
@@ -51,7 +51,7 @@ export default function HomePage() {
             <span className="block brand-gradient">{t("home.tagline2")}</span>
           </h1>
 
-          <p className="text-white/50 text-base md:text-xl mt-6 mb-8 max-w-2xl mx-auto px-2">
+          <p className="text-foreground/50 text-base md:text-xl mt-6 mb-8 max-w-2xl mx-auto px-2">
             Malaysian Performance Exhaust Brand — PERFORMANCE. MEROKET.
           </p>
 
@@ -79,7 +79,7 @@ export default function HomePage() {
           </div>
 
           {/* Stats */}
-          <div className="flex justify-center gap-6 sm:gap-12 mt-12 pt-8 border-t border-white/10">
+          <div className="flex justify-center gap-6 sm:gap-12 mt-12 pt-8 border-t border-foreground/10">
             {[
               { value: "500+", label: "Products" },
               { value: "10K+", label: "Happy Riders" },
@@ -87,7 +87,7 @@ export default function HomePage() {
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-3xl font-black text-primary">{stat.value}</div>
-                <div className="text-white/40 text-sm mt-1">{stat.label}</div>
+                <div className="text-foreground/40 text-sm mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -109,7 +109,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h3 className="text-white font-bold mb-1">{f.title}</h3>
-                  <p className="text-white/50 text-sm">{f.desc}</p>
+                  <p className="text-foreground/50 text-sm">{f.desc}</p>
                 </div>
               </CardBody>
             </Card>
@@ -174,7 +174,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-5xl font-black text-white mb-3">
               10% OFF Your First Order
             </h2>
-            <p className="text-white/50 mb-6">Use code <span className="text-secondary font-bold">MUFFLUX10</span> at checkout</p>
+            <p className="text-foreground/50 mb-6">Use code <span className="text-secondary font-bold">MUFFLUX10</span> at checkout</p>
             <Link href="/products">
               <Button color="primary" size="lg" className="font-bold">Shop Now</Button>
             </Link>
@@ -201,7 +201,7 @@ export default function HomePage() {
                       )}
                       <div className="p-5">
                         <h3 className="text-white font-bold line-clamp-2">{post.title_en}</h3>
-                        <p className="text-white/40 text-sm mt-2 flex items-center gap-1">
+                        <p className="text-foreground/40 text-sm mt-2 flex items-center gap-1">
                           {t("blog.publishedOn")} {post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}
                         </p>
                       </div>

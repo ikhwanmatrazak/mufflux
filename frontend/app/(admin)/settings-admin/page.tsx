@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { Button, Input, Card, CardBody, Divider } from "@heroui/react";
 import { Settings, Phone, Store } from "lucide-react";
@@ -40,7 +40,7 @@ export default function SettingsPage() {
             </div>
             <Input label="WhatsApp Number (with country code)" variant="bordered" placeholder="601XXXXXXXXX"
               value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
-            <p className="text-white/30 text-xs">Used for the floating WhatsApp button. E.g. 60123456789</p>
+            <p className="text-foreground/30 text-xs">Used for the floating WhatsApp button. E.g. 60123456789</p>
           </CardBody>
         </Card>
 

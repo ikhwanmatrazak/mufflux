@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { Button } from "@heroui/react";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
@@ -46,7 +46,7 @@ export default function LoginPage() {
               <div className="h-0.5 bg-gradient-to-r from-transparent via-[#D400A8] to-transparent mt-1" />
             </div>
           </Link>
-          <p className="text-white/40 mt-3 text-sm font-medium tracking-wide">Sign in to your account</p>
+          <p className="text-foreground/40 mt-3 text-sm font-medium tracking-wide">Sign in to your account</p>
         </div>
 
         {/* Card */}
@@ -55,13 +55,13 @@ export default function LoginPage() {
 
             {/* Email field */}
             <div>
-              <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-white/50"}`}>
+              <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-foreground/50"}`}>
                 Email
               </label>
               <div className={`flex items-center gap-3 bg-[#1a1a1a] rounded-xl px-4 py-3 border transition-all duration-200 ${
                 focused === "email" ? "border-[#D400A8] shadow-[0_0_0_3px_rgba(212,0,168,0.1)]" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
               }`}>
-                <Mail size={16} className={`shrink-0 transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-white/30"}`} />
+                <Mail size={16} className={`shrink-0 transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-foreground/30"}`} />
                 <input
                   type="email"
                   placeholder="you@example.com"
@@ -77,13 +77,13 @@ export default function LoginPage() {
 
             {/* Password field */}
             <div>
-              <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-white/50"}`}>
+              <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-foreground/50"}`}>
                 Password
               </label>
               <div className={`flex items-center gap-3 bg-[#1a1a1a] rounded-xl px-4 py-3 border transition-all duration-200 ${
                 focused === "password" ? "border-[#D400A8] shadow-[0_0_0_3px_rgba(212,0,168,0.1)]" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
               }`}>
-                <Lock size={16} className={`shrink-0 transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-white/30"}`} />
+                <Lock size={16} className={`shrink-0 transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-foreground/30"}`} />
                 <input
                   type={showPwd ? "text" : "password"}
                   placeholder="••••••••"
@@ -97,7 +97,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPwd(!showPwd)}
-                  className="text-white/30 hover:text-[#D400A8] transition-colors shrink-0"
+                  className="text-foreground/30 hover:text-[#D400A8] transition-colors shrink-0"
                 >
                   {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -119,11 +119,11 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="flex items-center gap-3 my-5">
             <div className="flex-1 h-px bg-[#222]" />
-            <span className="text-white/20 text-xs">or</span>
+            <span className="text-foreground/20 text-xs">or</span>
             <div className="flex-1 h-px bg-[#222]" />
           </div>
 
-          <p className="text-center text-white/40 text-sm">
+          <p className="text-center text-foreground/40 text-sm">
             Don&apos;t have an account?{" "}
             <Link href="/register" className="text-[#D400A8] hover:text-[#ff00cc] font-semibold transition-colors">
               Register
@@ -133,7 +133,7 @@ export default function LoginPage() {
 
         {/* Back to store */}
         <p className="text-center mt-6">
-          <Link href="/" className="text-white/25 hover:text-white/50 text-xs transition-colors">
+          <Link href="/" className="text-white/25 hover:text-foreground/50 text-xs transition-colors">
             ← Back to store
           </Link>
         </p>

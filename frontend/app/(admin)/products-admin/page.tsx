@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import {
   Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
@@ -66,31 +66,31 @@ export default function AdminProductsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-black text-white">Products</h1>
-          <p className="text-white/40 text-sm">{products.length} total products</p>
+          <p className="text-foreground/40 text-sm">{products.length} total products</p>
         </div>
         <Button color="primary" startContent={<Plus size={16} />} onPress={openAdd} className="font-bold">Add Product</Button>
       </div>
 
       <div className="mb-4">
-        <Input placeholder="Search products..." startContent={<Search size={16} className="text-white/30" />}
+        <Input placeholder="Search products..." startContent={<Search size={16} className="text-foreground/30" />}
           variant="bordered" className="max-w-sm" value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
 
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
         <Table aria-label="Products" className="bg-[#111]">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">NAME</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">SKU</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">PRICE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">STOCK</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">ACTIONS</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">NAME</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">SKU</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">PRICE</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STOCK</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ACTIONS</TableColumn>
           </TableHeader>
-          <TableBody emptyContent={<p className="text-white/30 py-8">No products found</p>}>
+          <TableBody emptyContent={<p className="text-foreground/30 py-8">No products found</p>}>
             {filtered.map((p) => (
               <TableRow key={p.id} className="border-b border-[#1a1a1a]">
                 <TableCell className="text-white font-medium">{p.name_en}</TableCell>
-                <TableCell className="text-white/50 text-sm font-mono">{p.sku}</TableCell>
+                <TableCell className="text-foreground/50 text-sm font-mono">{p.sku}</TableCell>
                 <TableCell className="text-primary font-bold">RM{Number(p.price).toFixed(2)}</TableCell>
                 <TableCell>
                   <Chip size="sm" color={p.stock_qty === 0 ? "danger" : p.stock_qty <= 5 ? "warning" : "success"} variant="flat">
@@ -104,8 +104,8 @@ export default function AdminProductsPage() {
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
-                    <Button isIconOnly size="sm" variant="light" className="text-white/40 hover:text-primary" onPress={() => openEdit(p)}><Edit2 size={14} /></Button>
-                    <Button isIconOnly size="sm" variant="light" className="text-white/40 hover:text-danger" onPress={() => handleDelete(p.id)}><Trash2 size={14} /></Button>
+                    <Button isIconOnly size="sm" variant="light" className="text-foreground/40 hover:text-primary" onPress={() => openEdit(p)}><Edit2 size={14} /></Button>
+                    <Button isIconOnly size="sm" variant="light" className="text-foreground/40 hover:text-danger" onPress={() => handleDelete(p.id)}><Trash2 size={14} /></Button>
                   </div>
                 </TableCell>
               </TableRow>

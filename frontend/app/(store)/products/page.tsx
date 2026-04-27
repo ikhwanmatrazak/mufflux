@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState, Suspense } from "react";
 import { Button, Select, SelectItem, Slider, Accordion, AccordionItem, Spinner, Pagination } from "@heroui/react";
 import { SlidersHorizontal, X } from "lucide-react";
@@ -75,7 +75,7 @@ function ProductsContent() {
             {categories.map((c) => (
               <button key={c.id} onClick={() => setFilters((f) => ({ ...f, category: c.slug }))}
                 className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors
-                  ${filters.category === c.slug ? "bg-primary/20 text-primary" : "text-white/60 hover:text-white"}`}>
+                  ${filters.category === c.slug ? "bg-primary/20 text-primary" : "text-foreground/60 hover:text-white"}`}>
                 {c.name_en}
               </button>
             ))}
@@ -100,7 +100,7 @@ function ProductsContent() {
             {engines.map((e) => (
               <button key={e.id} onClick={() => setFilters((f) => ({ ...f, cc: String(e.cc) }))}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors
-                  ${filters.cc === String(e.cc) ? "bg-primary border-primary text-white" : "border-[#333] text-white/60 hover:border-primary/50"}`}>
+                  ${filters.cc === String(e.cc) ? "bg-primary border-primary text-white" : "border-[#333] text-foreground/60 hover:border-primary/50"}`}>
                 {e.label}
               </button>
             ))}
@@ -121,7 +121,7 @@ function ProductsContent() {
         </AccordionItem>
       </Accordion>
 
-      <Button variant="bordered" size="sm" className="w-full text-white/50" startContent={<X size={14} />} onPress={clearFilters}>
+      <Button variant="bordered" size="sm" className="w-full text-foreground/50" startContent={<X size={14} />} onPress={clearFilters}>
         {t("product.clearFilters")}
       </Button>
     </div>
@@ -132,10 +132,10 @@ function ProductsContent() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-black text-white">{t("nav.products")}</h1>
-          <p className="text-white/40 text-sm mt-1">{products.length} products</p>
+          <p className="text-foreground/40 text-sm mt-1">{products.length} products</p>
         </div>
         <div className="flex gap-3">
-          <Button variant="bordered" size="sm" className="md:hidden text-white/60" startContent={<SlidersHorizontal size={14} />}
+          <Button variant="bordered" size="sm" className="md:hidden text-foreground/60" startContent={<SlidersHorizontal size={14} />}
             onPress={() => setShowFilters(!showFilters)}>
             {t("product.filter")}
           </Button>
@@ -170,7 +170,7 @@ function ProductsContent() {
             <div className="flex justify-center py-20"><Spinner color="primary" size="lg" /></div>
           ) : products.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-white/30 text-xl mb-4">{t("product.noProducts")}</p>
+              <p className="text-foreground/30 text-xl mb-4">{t("product.noProducts")}</p>
               <Button color="primary" variant="bordered" onPress={clearFilters}>{t("product.clearFilters")}</Button>
             </div>
           ) : (

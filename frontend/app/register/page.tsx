@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { Button, Input, Card, CardBody } from "@heroui/react";
 import { Eye, EyeOff } from "lucide-react";
@@ -36,7 +36,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/"><span className="font-black text-3xl tracking-wider text-white">MUFFLUX</span></Link>
-          <p className="text-white/40 mt-2">Create your account</p>
+          <p className="text-foreground/40 mt-2">Create your account</p>
         </div>
 
         <Card className="bg-[#111] border border-[#222]">
@@ -48,7 +48,7 @@ export default function RegisterPage() {
               label="Password" type={showPwd ? "text" : "password"} variant="bordered"
               value={form.password} onChange={(e) => setForm(f => ({ ...f, password: e.target.value }))}
               endContent={
-                <button onClick={() => setShowPwd(!showPwd)} className="text-white/40 hover:text-white">
+                <button onClick={() => setShowPwd(!showPwd)} className="text-foreground/40 hover:text-white">
                   {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               }
@@ -56,7 +56,7 @@ export default function RegisterPage() {
             <Button color="primary" size="lg" className="w-full font-bold" isLoading={loading} onPress={handleRegister}>
               Create Account
             </Button>
-            <p className="text-center text-white/40 text-sm">
+            <p className="text-center text-foreground/40 text-sm">
               Already have an account?{" "}
               <Link href="/login" className="text-primary hover:underline font-semibold">{t("nav.login")}</Link>
             </p>

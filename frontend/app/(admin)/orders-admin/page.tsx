@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import {
   Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
@@ -71,13 +71,13 @@ export default function AdminOrdersPage() {
       <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-white">Orders</h1>
-          <p className="text-white/40 text-sm">{orders.length} total orders</p>
+          <p className="text-foreground/40 text-sm">{orders.length} total orders</p>
         </div>
 
         {/* Download Report */}
         <div className="flex flex-wrap items-end gap-2 bg-[#111] border border-[#333] rounded-xl p-3">
           <div>
-            <p className="text-white/40 text-xs mb-1">From</p>
+            <p className="text-foreground/40 text-xs mb-1">From</p>
             <Input
               type="date"
               size="sm"
@@ -88,7 +88,7 @@ export default function AdminOrdersPage() {
             />
           </div>
           <div>
-            <p className="text-white/40 text-xs mb-1">To</p>
+            <p className="text-foreground/40 text-xs mb-1">To</p>
             <Input
               type="date"
               size="sm"
@@ -114,22 +114,22 @@ export default function AdminOrdersPage() {
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
         <Table aria-label="Orders" className="bg-[#111]">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">ORDER ID</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">DATE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">CUSTOMER</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">TOTAL</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">TRACKING</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">ACTIONS</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ORDER ID</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">DATE</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">CUSTOMER</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TOTAL</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TRACKING</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ACTIONS</TableColumn>
           </TableHeader>
-          <TableBody emptyContent={<p className="text-white/30 py-8">No orders yet</p>}>
+          <TableBody emptyContent={<p className="text-foreground/30 py-8">No orders yet</p>}>
             {orders.map((order) => (
               <TableRow key={order.id} className="border-b border-[#1a1a1a]">
                 <TableCell className="text-white font-mono font-bold">#{order.id}</TableCell>
-                <TableCell className="text-white/50 text-sm">
+                <TableCell className="text-foreground/50 text-sm">
                   {new Date(order.created_at).toLocaleDateString()}
                 </TableCell>
-                <TableCell className="text-white/70">
+                <TableCell className="text-foreground/70">
                   {order.user ? order.user.name : `User #${order.user_id}`}
                 </TableCell>
                 <TableCell className="text-primary font-bold">
@@ -140,12 +140,12 @@ export default function AdminOrdersPage() {
                     {order.status}
                   </Chip>
                 </TableCell>
-                <TableCell className="text-white/40 text-xs font-mono">
+                <TableCell className="text-foreground/40 text-xs font-mono">
                   {order.tracking_number || "—"}
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="bordered" className="border-[#333] text-white/60" onPress={() => openUpdate(order)}>
+                    <Button size="sm" variant="bordered" className="border-[#333] text-foreground/60" onPress={() => openUpdate(order)}>
                       Update
                     </Button>
                     {["paid", "processing", "shipped", "delivered"].includes(order.status) && (

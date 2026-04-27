@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import { Home, ShoppingBag, ShoppingCart, User } from "lucide-react";
 import { Badge } from "@heroui/react";
@@ -27,13 +27,13 @@ export default function MobileBottomNav() {
               <div className={`flex items-center justify-center w-10 h-8 rounded-xl transition-all ${active ? "bg-primary/15" : ""}`}>
                 {item.badge ? (
                   <Badge content={item.badge} color="primary" size="sm" className="min-w-4 h-4 text-[10px]">
-                    <Icon size={20} className={active ? "text-primary" : "text-white/50"} />
+                    <Icon size={20} className={active ? "text-primary" : "text-foreground/50"} />
                   </Badge>
                 ) : (
-                  <Icon size={20} className={active ? "text-primary" : "text-white/50"} />
+                  <Icon size={20} className={active ? "text-primary" : "text-foreground/50"} />
                 )}
               </div>
-              <span className={`text-[10px] font-medium leading-none ${active ? "text-primary" : "text-white/40"}`}>
+              <span className={`text-[10px] font-medium leading-none ${active ? "text-primary" : "text-foreground/40"}`}>
                 {item.label}
               </span>
             </Link>

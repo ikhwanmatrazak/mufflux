@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { Button, Input, RadioGroup, Radio, Select, SelectItem, Divider, Chip } from "@heroui/react";
 import { CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
@@ -73,7 +73,7 @@ export default function CheckoutPage() {
       <div className="flex items-center justify-center gap-4 mb-12">
         {STEPS.map((s, i) => (
           <div key={s} className="flex items-center gap-4">
-            <div className={`flex items-center gap-2 ${i <= step ? "text-primary" : "text-white/30"}`}>
+            <div className={`flex items-center gap-2 ${i <= step ? "text-primary" : "text-foreground/30"}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2
                 ${i < step ? "bg-primary border-primary" : i === step ? "border-primary" : "border-[#333]"}`}>
                 {i < step ? <CheckCircle size={16} /> : i + 1}
@@ -101,7 +101,7 @@ export default function CheckoutPage() {
 
               {shippingType === "delivery" && (
                 <div className="space-y-4">
-                  <h3 className="text-white/70 font-semibold text-sm">{t("checkout.shippingAddress")}</h3>
+                  <h3 className="text-foreground/70 font-semibold text-sm">{t("checkout.shippingAddress")}</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <Input label={t("account.name")} variant="bordered" value={address.name} onChange={(e) => setAddress(a => ({ ...a, name: e.target.value }))} />
                     <Input label={t("account.phone")} variant="bordered" value={address.phone} onChange={(e) => setAddress(a => ({ ...a, phone: e.target.value }))} />
@@ -112,7 +112,7 @@ export default function CheckoutPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-white/70 font-semibold text-sm mb-3">{t("checkout.selectCourier")}</h3>
+                    <h3 className="text-foreground/70 font-semibold text-sm mb-3">{t("checkout.selectCourier")}</h3>
                     <RadioGroup value={courier} onValueChange={setCourier} color="primary" orientation="horizontal">
                       <Radio value="poslaju">{t("checkout.poslaju")} — RM10</Radio>
                       <Radio value="jnt">{t("checkout.jnt")} — RM8</Radio>
@@ -124,7 +124,7 @@ export default function CheckoutPage() {
 
               {shippingType === "installation" && (
                 <div className="space-y-4">
-                  <h3 className="text-white/70 font-semibold text-sm">{t("checkout.bookingSlot")}</h3>
+                  <h3 className="text-foreground/70 font-semibold text-sm">{t("checkout.bookingSlot")}</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <Input type="date" label={t("checkout.preferredDate")} variant="bordered" value={bookingDate} onChange={(e) => setBookingDate(e.target.value)} />
                     <Input type="time" label={t("checkout.preferredTime")} variant="bordered" value={bookingTime} onChange={(e) => setBookingTime(e.target.value)} />
@@ -149,12 +149,12 @@ export default function CheckoutPage() {
                 </div>
                 <div>
                   <p className="text-white font-semibold">Billplz</p>
-                  <p className="text-white/40 text-sm">FPX / Credit Card / GrabPay / TNG eWallet</p>
+                  <p className="text-foreground/40 text-sm">FPX / Credit Card / GrabPay / TNG eWallet</p>
                 </div>
               </div>
-              <p className="text-white/50 text-sm">Order #{orderId} — Total: <span className="text-primary font-bold">RM{total.toFixed(2)}</span></p>
+              <p className="text-foreground/50 text-sm">Order #{orderId} — Total: <span className="text-primary font-bold">RM{total.toFixed(2)}</span></p>
               <div className="flex gap-3">
-                <Button variant="bordered" className="border-[#333] text-white/60" onPress={() => setStep(0)} startContent={<ArrowLeft size={16} />}>
+                <Button variant="bordered" className="border-[#333] text-foreground/60" onPress={() => setStep(0)} startContent={<ArrowLeft size={16} />}>
                   {t("checkout.back")}
                 </Button>
                 <Button color="primary" size="lg" className="flex-1 font-bold" isLoading={loading} onPress={proceedToPayment}>
@@ -172,14 +172,14 @@ export default function CheckoutPage() {
               </div>
               <div>
                 <h2 className="text-2xl font-black text-white">{t("checkout.orderConfirmed")}</h2>
-                <p className="text-white/50 mt-2">{t("checkout.orderNumber")}: #{orderId}</p>
+                <p className="text-foreground/50 mt-2">{t("checkout.orderNumber")}: #{orderId}</p>
               </div>
               <div className="flex gap-3 justify-center">
                 <Link href={`/account/orders`}>
                   <Button color="primary" className="font-bold">{t("checkout.trackOrder")}</Button>
                 </Link>
                 <Link href="/products">
-                  <Button variant="bordered" className="border-[#333] text-white/60">Continue Shopping</Button>
+                  <Button variant="bordered" className="border-[#333] text-foreground/60">Continue Shopping</Button>
                 </Link>
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function CheckoutPage() {
                   <div className="w-10 h-10 bg-[#0d0d0d] rounded-lg shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-white text-xs font-medium line-clamp-1">{item.name}</p>
-                    {item.variantName && <p className="text-white/40 text-xs">{item.variantName}</p>}
+                    {item.variantName && <p className="text-foreground/40 text-xs">{item.variantName}</p>}
                   </div>
                   <p className="text-white text-xs whitespace-nowrap">×{item.qty}</p>
                   <p className="text-primary text-xs font-bold whitespace-nowrap">RM{(item.price * item.qty).toFixed(2)}</p>
@@ -205,10 +205,10 @@ export default function CheckoutPage() {
             </div>
             <Divider className="bg-[#222]" />
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-white/50">Subtotal</span><span className="text-white">RM{subtotal.toFixed(2)}</span></div>
-              {discountAmount > 0 && <div className="flex justify-between"><span className="text-white/50">Discount</span><span className="text-success">-RM{discountAmount.toFixed(2)}</span></div>}
-              {loyaltyDiscount > 0 && <div className="flex justify-between"><span className="text-white/50">Loyalty</span><span className="text-success">-RM{loyaltyDiscount.toFixed(2)}</span></div>}
-              <div className="flex justify-between"><span className="text-white/50">Shipping</span><span className="text-white">RM{shippingFee.toFixed(2)}</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Subtotal</span><span className="text-white">RM{subtotal.toFixed(2)}</span></div>
+              {discountAmount > 0 && <div className="flex justify-between"><span className="text-foreground/50">Discount</span><span className="text-success">-RM{discountAmount.toFixed(2)}</span></div>}
+              {loyaltyDiscount > 0 && <div className="flex justify-between"><span className="text-foreground/50">Loyalty</span><span className="text-success">-RM{loyaltyDiscount.toFixed(2)}</span></div>}
+              <div className="flex justify-between"><span className="text-foreground/50">Shipping</span><span className="text-white">RM{shippingFee.toFixed(2)}</span></div>
             </div>
             <Divider className="bg-[#222]" />
             <div className="flex justify-between">

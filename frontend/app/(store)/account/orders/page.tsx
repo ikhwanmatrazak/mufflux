@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import { Chip, Spinner, Button } from "@heroui/react";
 import { useTranslation } from "react-i18next";
@@ -31,7 +31,7 @@ export default function OrdersPage() {
       <h1 className="text-2xl font-black text-white mb-6">{t("account.myOrders")}</h1>
       {orders.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-white/40 mb-4">{t("account.noOrders")}</p>
+          <p className="text-foreground/40 mb-4">{t("account.noOrders")}</p>
           <Link href="/products"><Button color="primary">Shop Now</Button></Link>
         </div>
       ) : (
@@ -45,11 +45,11 @@ export default function OrdersPage() {
                     {t(`account.orderStatus.${order.status}`)}
                   </Chip>
                 </div>
-                <p className="text-white/40 text-sm">{new Date(order.created_at).toLocaleDateString()}</p>
+                <p className="text-foreground/40 text-sm">{new Date(order.created_at).toLocaleDateString()}</p>
                 <p className="text-primary font-bold mt-1">RM{Number(order.total_amount).toFixed(2)}</p>
               </div>
               <Link href={`/account/orders/${order.id}`}>
-                <Button size="sm" variant="bordered" className="border-[#333] text-white/60">{t("account.viewDetail")}</Button>
+                <Button size="sm" variant="bordered" className="border-[#333] text-foreground/60">{t("account.viewDetail")}</Button>
               </Link>
             </div>
           ))}

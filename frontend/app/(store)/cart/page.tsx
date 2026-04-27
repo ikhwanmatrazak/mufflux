@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import { Button, Input, Switch, Divider, Image, Chip } from "@heroui/react";
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from "lucide-react";
@@ -50,7 +50,7 @@ export default function CartPage() {
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
         <ShoppingBag size={80} className="text-white/10 mx-auto mb-6" />
         <h2 className="text-2xl font-bold text-white mb-2">{t("cart.emptyCart")}</h2>
-        <p className="text-white/40 mb-8">{t("cart.emptyCartDesc")}</p>
+        <p className="text-foreground/40 mb-8">{t("cart.emptyCartDesc")}</p>
         <Link href="/products">
           <Button color="primary" size="lg" className="font-bold">{t("cart.continueShopping")}</Button>
         </Link>
@@ -73,14 +73,14 @@ export default function CartPage() {
                   <Image src={item.image} alt={item.name} className="w-full h-full object-cover" removeWrapper />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-white/20 text-xs font-black">MFX</span>
+                    <span className="text-foreground/20 text-xs font-black">MFX</span>
                   </div>
                 )}
               </div>
 
               <div className="flex-1 min-w-0">
                 <h3 className="text-white font-semibold text-sm line-clamp-1">{item.name}</h3>
-                {item.variantName && <p className="text-white/40 text-xs mt-0.5">{item.variantName}</p>}
+                {item.variantName && <p className="text-foreground/40 text-xs mt-0.5">{item.variantName}</p>}
                 <p className="text-primary font-bold mt-1">RM{item.price.toFixed(2)}</p>
               </div>
 
@@ -113,7 +113,7 @@ export default function CartPage() {
 
             {/* Discount Code */}
             <div>
-              <p className="text-white/60 text-sm mb-2">{t("cart.discountCode")}</p>
+              <p className="text-foreground/60 text-sm mb-2">{t("cart.discountCode")}</p>
               <div className="flex gap-2">
                 <Input size="sm" placeholder="Enter code" value={codeInput} onChange={(e) => setCodeInput(e.target.value)}
                   className="flex-1" variant="bordered" />
@@ -132,8 +132,8 @@ export default function CartPage() {
             {user && user.loyalty_points > 0 && (
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/70 text-sm">{t("cart.loyaltyPoints")}</p>
-                  <p className="text-white/40 text-xs">
+                  <p className="text-foreground/70 text-sm">{t("cart.loyaltyPoints")}</p>
+                  <p className="text-foreground/40 text-xs">
                     {t("cart.availablePoints", { points: user.loyalty_points, amount: (user.loyalty_points * 0.1).toFixed(2) })}
                   </p>
                 </div>
@@ -146,23 +146,23 @@ export default function CartPage() {
             {/* Totals */}
             <div className="space-y-2.5">
               <div className="flex justify-between text-sm">
-                <span className="text-white/60">{t("cart.subtotal")}</span>
+                <span className="text-foreground/60">{t("cart.subtotal")}</span>
                 <span className="text-white">RM{subtotal.toFixed(2)}</span>
               </div>
               {discountAmount > 0 && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/60">{t("cart.discount")}</span>
+                  <span className="text-foreground/60">{t("cart.discount")}</span>
                   <span className="text-success">-RM{discountAmount.toFixed(2)}</span>
                 </div>
               )}
               {loyaltyDiscount > 0 && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/60">{t("cart.loyaltyDiscount")}</span>
+                  <span className="text-foreground/60">{t("cart.loyaltyDiscount")}</span>
                   <span className="text-success">-RM{loyaltyDiscount.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-sm">
-                <span className="text-white/60">{t("cart.shipping")}</span>
+                <span className="text-foreground/60">{t("cart.shipping")}</span>
                 <span className="text-white">RM{shippingFee.toFixed(2)}</span>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function CartPage() {
             </Link>
 
             <Link href="/products" className="block">
-              <Button variant="bordered" size="sm" className="w-full text-white/50 border-[#333]">
+              <Button variant="bordered" size="sm" className="w-full text-foreground/50 border-[#333]">
                 {t("cart.continueShopping")}
               </Button>
             </Link>

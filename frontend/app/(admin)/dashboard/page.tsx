@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import { Card, CardBody, Spinner, Chip } from "@heroui/react";
 import { DollarSign, ShoppingBag, AlertTriangle, UserPlus, TrendingUp } from "lucide-react";
@@ -23,7 +23,7 @@ export default function DashboardPage() {
     <div className="p-8">
       <div className="mb-8">
         <h1 className="text-2xl font-black text-white">Dashboard</h1>
-        <p className="text-white/40 text-sm mt-1">Overview of your store performance</p>
+        <p className="text-foreground/40 text-sm mt-1">Overview of your store performance</p>
       </div>
 
       {/* Stat Tiles */}
@@ -35,7 +35,7 @@ export default function DashboardPage() {
                 <tile.icon size={20} className={tile.color} />
               </div>
               <p className={`text-2xl font-black ${tile.color}`}>{tile.value}</p>
-              <p className="text-white/40 text-xs mt-1">{tile.label}</p>
+              <p className="text-foreground/40 text-xs mt-1">{tile.label}</p>
             </CardBody>
           </Card>
         ))}
@@ -54,7 +54,7 @@ export default function DashboardPage() {
               const pct = (day.revenue / maxRev) * 100;
               return (
                 <div key={day.date} className="flex items-center gap-4">
-                  <span className="text-white/40 text-xs w-24 shrink-0">{new Date(day.date).toLocaleDateString("en-MY", { weekday: "short", month: "short", day: "numeric" })}</span>
+                  <span className="text-foreground/40 text-xs w-24 shrink-0">{new Date(day.date).toLocaleDateString("en-MY", { weekday: "short", month: "short", day: "numeric" })}</span>
                   <div className="flex-1 bg-[#1a1a1a] rounded-full h-2 overflow-hidden">
                     <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${pct}%` }} />
                   </div>

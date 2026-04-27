@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect } from "react";
 import { Tabs, Tab, Progress, Chip, Card, CardBody, Button } from "@heroui/react";
 import { Package, MapPin, Heart, User, Star } from "lucide-react";
@@ -29,7 +29,7 @@ export default function AccountPage() {
         </div>
         <div>
           <h1 className="text-2xl font-black text-white">{user.name}</h1>
-          <p className="text-white/40">{user.email}</p>
+          <p className="text-foreground/40">{user.email}</p>
         </div>
       </div>
 
@@ -38,14 +38,14 @@ export default function AccountPage() {
         <CardBody className="p-6">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <p className="text-white/60 text-sm">{t("account.loyaltyPoints")}</p>
+              <p className="text-foreground/60 text-sm">{t("account.loyaltyPoints")}</p>
               <p className="text-4xl font-black text-primary">{user.loyalty_points}</p>
-              <p className="text-white/40 text-xs mt-1">≈ RM{(user.loyalty_points * 0.1).toFixed(2)}</p>
+              <p className="text-foreground/40 text-xs mt-1">≈ RM{(user.loyalty_points * 0.1).toFixed(2)}</p>
             </div>
             <Star size={48} className="text-secondary/30" fill="currentColor" />
           </div>
           <Progress value={pointsPercent} color="secondary" size="sm" className="mt-2" />
-          <p className="text-white/30 text-xs mt-1">{user.loyalty_points}/{maxPoints} pts to next reward</p>
+          <p className="text-foreground/30 text-xs mt-1">{user.loyalty_points}/{maxPoints} pts to next reward</p>
         </CardBody>
       </Card>
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import { Button, Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip } from "@heroui/react";
 import { Plus, Edit2, Trash2, MapPin } from "lucide-react";
@@ -60,7 +60,7 @@ export default function AddressesPage() {
       {addresses.length === 0 ? (
         <div className="text-center py-16">
           <MapPin size={48} className="text-white/10 mx-auto mb-3" />
-          <p className="text-white/40">{t("account.noAddresses")}</p>
+          <p className="text-foreground/40">{t("account.noAddresses")}</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -72,12 +72,12 @@ export default function AddressesPage() {
                   <p className="text-white font-semibold">{addr.label}</p>
                   {addr.is_default && <Chip size="sm" color="primary" variant="flat">{t("account.default")}</Chip>}
                 </div>
-                <p className="text-white/60 text-sm">{addr.address_line1}{addr.address_line2 ? `, ${addr.address_line2}` : ""}</p>
-                <p className="text-white/60 text-sm">{addr.city}, {addr.state} {addr.postcode}</p>
+                <p className="text-foreground/60 text-sm">{addr.address_line1}{addr.address_line2 ? `, ${addr.address_line2}` : ""}</p>
+                <p className="text-foreground/60 text-sm">{addr.city}, {addr.state} {addr.postcode}</p>
               </div>
               <div className="flex gap-2">
-                <Button isIconOnly size="sm" variant="light" className="text-white/40 hover:text-primary" onPress={() => openEdit(addr)}><Edit2 size={14} /></Button>
-                <Button isIconOnly size="sm" variant="light" className="text-white/40 hover:text-danger" onPress={() => handleDelete(addr.id)}><Trash2 size={14} /></Button>
+                <Button isIconOnly size="sm" variant="light" className="text-foreground/40 hover:text-primary" onPress={() => openEdit(addr)}><Edit2 size={14} /></Button>
+                <Button isIconOnly size="sm" variant="light" className="text-foreground/40 hover:text-danger" onPress={() => handleDelete(addr.id)}><Trash2 size={14} /></Button>
               </div>
             </div>
           ))}

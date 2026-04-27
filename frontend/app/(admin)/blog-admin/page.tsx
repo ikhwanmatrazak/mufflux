@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useState } from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Chip, Spinner, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Switch, Tabs, Tab } from "@heroui/react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
@@ -13,7 +13,7 @@ function TiptapEditor({ value, onChange }: { value: string; onChange: (v: string
     content: value,
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
-      attributes: { class: "min-h-[200px] p-4 text-white/80 focus:outline-none prose prose-invert max-w-none" },
+      attributes: { class: "min-h-[200px] p-4 text-foreground/80 focus:outline-none prose prose-invert max-w-none" },
     },
   });
   return (
@@ -26,7 +26,7 @@ function TiptapEditor({ value, onChange }: { value: string; onChange: (v: string
           { label: "UL", cmd: () => editor?.chain().focus().toggleBulletList().run() },
         ].map((b) => (
           <button key={b.label} onMouseDown={(e) => { e.preventDefault(); b.cmd(); }}
-            className="px-3 py-1 text-xs font-bold text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+            className="px-3 py-1 text-xs font-bold text-foreground/60 hover:text-white hover:bg-foreground/10 rounded-lg transition-colors">
             {b.label}
           </button>
         ))}
@@ -78,22 +78,22 @@ export default function AdminBlogPage() {
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
         <Table aria-label="Blog" className="bg-[#111]">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">TITLE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">SLUG</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">PUBLISHED</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-white/60">ACTIONS</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TITLE</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">SLUG</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">PUBLISHED</TableColumn>
+            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ACTIONS</TableColumn>
           </TableHeader>
-          <TableBody emptyContent={<p className="text-white/30 py-8">No posts yet</p>}>
+          <TableBody emptyContent={<p className="text-foreground/30 py-8">No posts yet</p>}>
             {posts.map((post) => (
               <TableRow key={post.id} className="border-b border-[#1a1a1a]">
                 <TableCell className="text-white font-medium">{post.title_en}</TableCell>
-                <TableCell className="text-white/40 text-sm font-mono">{post.slug}</TableCell>
+                <TableCell className="text-foreground/40 text-sm font-mono">{post.slug}</TableCell>
                 <TableCell><Chip size="sm" color={post.is_published ? "success" : "default"} variant="flat">{post.is_published ? "Published" : "Draft"}</Chip></TableCell>
-                <TableCell className="text-white/40 text-sm">{post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}</TableCell>
+                <TableCell className="text-foreground/40 text-sm">{post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}</TableCell>
                 <TableCell>
                   <div className="flex gap-2">
-                    <Button isIconOnly size="sm" variant="light" className="text-white/40 hover:text-primary" onPress={() => openEdit(post)}><Edit2 size={14} /></Button>
+                    <Button isIconOnly size="sm" variant="light" className="text-foreground/40 hover:text-primary" onPress={() => openEdit(post)}><Edit2 size={14} /></Button>
                   </div>
                 </TableCell>
               </TableRow>
@@ -114,7 +114,7 @@ export default function AdminBlogPage() {
             </div>
             <div className="flex items-center gap-3">
               <Switch isSelected={form.is_published} onValueChange={(v) => setForm((f: any) => ({ ...f, is_published: v }))} color="primary" />
-              <span className="text-white/60 text-sm">Publish immediately</span>
+              <span className="text-foreground/60 text-sm">Publish immediately</span>
             </div>
             <Tabs color="primary">
               <Tab key="en" title="Content (EN)">
