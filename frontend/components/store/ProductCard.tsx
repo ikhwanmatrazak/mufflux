@@ -31,7 +31,7 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
 
   if (loading) {
     return (
-      <Card className="bg-[#111] border border-[#222]">
+      <Card className="bg-content1 border border-divider">
         <CardBody className="p-0">
           <Skeleton className="aspect-square rounded-t-xl" />
           <div className="p-4 space-y-2">
@@ -77,9 +77,9 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
 
   return (
     <Link href={`/products/${product.slug}`}>
-      <Card className="product-card bg-[#111] border border-[#222] hover:border-[#D400A8]/50 cursor-pointer">
+      <Card className="product-card bg-content1 border border-divider hover:border-[#D400A8]/50 cursor-pointer">
         <CardBody className="p-0 overflow-hidden">
-          <div className="relative aspect-square bg-[#0d0d0d]">
+          <div className="relative aspect-square bg-content1">
             {primaryImage ? (
               <Image
                 src={primaryImage.image_url}
@@ -105,7 +105,7 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
               <button
                 onClick={handleWishlist}
                 className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all
-                  ${inWishlist ? "bg-primary text-white" : "bg-black/60 text-foreground/60 hover:text-primary"}`}
+                  ${inWishlist ? "bg-primary text-foreground" : "bg-black/60 text-foreground/60 hover:text-primary"}`}
               >
                 <Heart size={14} fill={inWishlist ? "currentColor" : "none"} />
               </button>
@@ -113,7 +113,7 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
           </div>
 
           <div className="p-4">
-            <h3 className="text-white font-semibold text-sm line-clamp-2 mb-2">{name}</h3>
+            <h3 className="text-foreground font-semibold text-sm line-clamp-2 mb-2">{name}</h3>
 
             <div className="flex items-center gap-1 mb-3">
               {[1, 2, 3, 4, 5].map((s) => (

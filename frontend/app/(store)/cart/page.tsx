@@ -49,7 +49,7 @@ export default function CartPage() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
         <ShoppingBag size={80} className="text-white/10 mx-auto mb-6" />
-        <h2 className="text-2xl font-bold text-white mb-2">{t("cart.emptyCart")}</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">{t("cart.emptyCart")}</h2>
         <p className="text-foreground/40 mb-8">{t("cart.emptyCartDesc")}</p>
         <Link href="/products">
           <Button color="primary" size="lg" className="font-bold">{t("cart.continueShopping")}</Button>
@@ -60,15 +60,15 @@ export default function CartPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-black text-white mb-8">{t("cart.yourCart")}</h1>
+      <h1 className="text-3xl font-black text-foreground mb-8">{t("cart.yourCart")}</h1>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Cart Items */}
         <div className="flex-1 space-y-4">
           {items.map((item) => (
             <div key={`${item.productId}-${item.variantId}`}
-              className="flex gap-4 bg-[#111] border border-[#222] rounded-2xl p-4 items-center">
-              <div className="w-20 h-20 bg-[#0d0d0d] rounded-xl overflow-hidden shrink-0">
+              className="flex gap-4 bg-content1 border border-divider rounded-2xl p-4 items-center">
+              <div className="w-20 h-20 bg-content1 rounded-xl overflow-hidden shrink-0">
                 {item.image ? (
                   <Image src={item.image} alt={item.name} className="w-full h-full object-cover" removeWrapper />
                 ) : (
@@ -79,7 +79,7 @@ export default function CartPage() {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h3 className="text-white font-semibold text-sm line-clamp-1">{item.name}</h3>
+                <h3 className="text-foreground font-semibold text-sm line-clamp-1">{item.name}</h3>
                 {item.variantName && <p className="text-foreground/40 text-xs mt-0.5">{item.variantName}</p>}
                 <p className="text-primary font-bold mt-1">RM{item.price.toFixed(2)}</p>
               </div>
@@ -88,14 +88,14 @@ export default function CartPage() {
                 <Button isIconOnly size="sm" variant="flat" onPress={() => updateQty(item.productId, item.variantId, Math.max(1, item.qty - 1))}>
                   <Minus size={12} />
                 </Button>
-                <span className="text-white font-bold w-6 text-center text-sm">{item.qty}</span>
+                <span className="text-foreground font-bold w-6 text-center text-sm">{item.qty}</span>
                 <Button isIconOnly size="sm" variant="flat" onPress={() => updateQty(item.productId, item.variantId, item.qty + 1)}>
                   <Plus size={12} />
                 </Button>
               </div>
 
               <div className="text-right min-w-[80px]">
-                <p className="text-white font-bold">RM{(item.price * item.qty).toFixed(2)}</p>
+                <p className="text-foreground font-bold">RM{(item.price * item.qty).toFixed(2)}</p>
               </div>
 
               <Button isIconOnly size="sm" variant="light" className="text-danger/60 hover:text-danger"
@@ -108,8 +108,8 @@ export default function CartPage() {
 
         {/* Order Summary */}
         <div className="lg:w-80 shrink-0">
-          <div className="bg-[#111] border border-[#222] rounded-2xl p-6 space-y-5 sticky top-24">
-            <h2 className="text-white font-bold text-lg">Order Summary</h2>
+          <div className="bg-content1 border border-divider rounded-2xl p-6 space-y-5 sticky top-24">
+            <h2 className="text-foreground font-bold text-lg">Order Summary</h2>
 
             {/* Discount Code */}
             <div>
@@ -141,13 +141,13 @@ export default function CartPage() {
               </div>
             )}
 
-            <Divider className="bg-[#222]" />
+            <Divider className="bg-divider" />
 
             {/* Totals */}
             <div className="space-y-2.5">
               <div className="flex justify-between text-sm">
                 <span className="text-foreground/60">{t("cart.subtotal")}</span>
-                <span className="text-white">RM{subtotal.toFixed(2)}</span>
+                <span className="text-foreground">RM{subtotal.toFixed(2)}</span>
               </div>
               {discountAmount > 0 && (
                 <div className="flex justify-between text-sm">
@@ -163,14 +163,14 @@ export default function CartPage() {
               )}
               <div className="flex justify-between text-sm">
                 <span className="text-foreground/60">{t("cart.shipping")}</span>
-                <span className="text-white">RM{shippingFee.toFixed(2)}</span>
+                <span className="text-foreground">RM{shippingFee.toFixed(2)}</span>
               </div>
             </div>
 
-            <Divider className="bg-[#222]" />
+            <Divider className="bg-divider" />
 
             <div className="flex justify-between">
-              <span className="text-white font-bold">{t("cart.total")}</span>
+              <span className="text-foreground font-bold">{t("cart.total")}</span>
               <span className="text-primary font-black text-xl">RM{total.toFixed(2)}</span>
             </div>
 
@@ -181,7 +181,7 @@ export default function CartPage() {
             </Link>
 
             <Link href="/products" className="block">
-              <Button variant="bordered" size="sm" className="w-full text-foreground/50 border-[#333]">
+              <Button variant="bordered" size="sm" className="w-full text-foreground/50 border-divider">
                 {t("cart.continueShopping")}
               </Button>
             </Link>

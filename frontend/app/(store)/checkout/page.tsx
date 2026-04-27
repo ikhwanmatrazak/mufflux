@@ -75,12 +75,12 @@ export default function CheckoutPage() {
           <div key={s} className="flex items-center gap-4">
             <div className={`flex items-center gap-2 ${i <= step ? "text-primary" : "text-foreground/30"}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2
-                ${i < step ? "bg-primary border-primary" : i === step ? "border-primary" : "border-[#333]"}`}>
+                ${i < step ? "bg-primary border-primary" : i === step ? "border-primary" : "border-divider"}`}>
                 {i < step ? <CheckCircle size={16} /> : i + 1}
               </div>
               <span className="hidden sm:block text-sm font-semibold">{t(`checkout.${s}`)}</span>
             </div>
-            {i < STEPS.length - 1 && <div className={`h-px w-16 ${i < step ? "bg-primary" : "bg-[#333]"}`} />}
+            {i < STEPS.length - 1 && <div className={`h-px w-16 ${i < step ? "bg-primary" : "bg-divider"}`} />}
           </div>
         ))}
       </div>
@@ -90,8 +90,8 @@ export default function CheckoutPage() {
         <div className="lg:col-span-2">
           {/* Step 0: Delivery */}
           {step === 0 && (
-            <div className="bg-[#111] border border-[#222] rounded-2xl p-6 space-y-6">
-              <h2 className="text-white font-bold text-xl">{t("checkout.step1")}</h2>
+            <div className="bg-content1 border border-divider rounded-2xl p-6 space-y-6">
+              <h2 className="text-foreground font-bold text-xl">{t("checkout.step1")}</h2>
 
               <RadioGroup label="Shipping Type" value={shippingType} onValueChange={setShippingType} color="primary">
                 <Radio value="delivery">{t("checkout.delivery")}</Radio>
@@ -141,20 +141,20 @@ export default function CheckoutPage() {
 
           {/* Step 1: Payment */}
           {step === 1 && (
-            <div className="bg-[#111] border border-[#222] rounded-2xl p-6 space-y-6">
-              <h2 className="text-white font-bold text-xl">{t("checkout.step2")}</h2>
+            <div className="bg-content1 border border-divider rounded-2xl p-6 space-y-6">
+              <h2 className="text-foreground font-bold text-xl">{t("checkout.step2")}</h2>
               <div className="flex items-center gap-3 p-4 border border-[#D400A8]/30 rounded-xl bg-[#D400A8]/5">
                 <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                   <span className="text-primary font-black text-sm">BP</span>
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Billplz</p>
+                  <p className="text-foreground font-semibold">Billplz</p>
                   <p className="text-foreground/40 text-sm">FPX / Credit Card / GrabPay / TNG eWallet</p>
                 </div>
               </div>
               <p className="text-foreground/50 text-sm">Order #{orderId} — Total: <span className="text-primary font-bold">RM{total.toFixed(2)}</span></p>
               <div className="flex gap-3">
-                <Button variant="bordered" className="border-[#333] text-foreground/60" onPress={() => setStep(0)} startContent={<ArrowLeft size={16} />}>
+                <Button variant="bordered" className="border-divider text-foreground/60" onPress={() => setStep(0)} startContent={<ArrowLeft size={16} />}>
                   {t("checkout.back")}
                 </Button>
                 <Button color="primary" size="lg" className="flex-1 font-bold" isLoading={loading} onPress={proceedToPayment}>
@@ -166,12 +166,12 @@ export default function CheckoutPage() {
 
           {/* Step 2: Confirmation */}
           {step === 2 && (
-            <div className="bg-[#111] border border-[#222] rounded-2xl p-8 text-center space-y-6">
+            <div className="bg-content1 border border-divider rounded-2xl p-8 text-center space-y-6">
               <div className="w-20 h-20 bg-success/10 rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle size={40} className="text-success" />
               </div>
               <div>
-                <h2 className="text-2xl font-black text-white">{t("checkout.orderConfirmed")}</h2>
+                <h2 className="text-2xl font-black text-foreground">{t("checkout.orderConfirmed")}</h2>
                 <p className="text-foreground/50 mt-2">{t("checkout.orderNumber")}: #{orderId}</p>
               </div>
               <div className="flex gap-3 justify-center">
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
                   <Button color="primary" className="font-bold">{t("checkout.trackOrder")}</Button>
                 </Link>
                 <Link href="/products">
-                  <Button variant="bordered" className="border-[#333] text-foreground/60">Continue Shopping</Button>
+                  <Button variant="bordered" className="border-divider text-foreground/60">Continue Shopping</Button>
                 </Link>
               </div>
             </div>
@@ -188,31 +188,31 @@ export default function CheckoutPage() {
 
         {/* Order Summary Sidebar */}
         <div>
-          <div className="bg-[#111] border border-[#222] rounded-2xl p-5 space-y-4 sticky top-24">
-            <h3 className="text-white font-bold">{t("checkout.orderSummary")}</h3>
+          <div className="bg-content1 border border-divider rounded-2xl p-5 space-y-4 sticky top-24">
+            <h3 className="text-foreground font-bold">{t("checkout.orderSummary")}</h3>
             <div className="space-y-3">
               {items.map((item) => (
                 <div key={`${item.productId}-${item.variantId}`} className="flex gap-3">
-                  <div className="w-10 h-10 bg-[#0d0d0d] rounded-lg shrink-0" />
+                  <div className="w-10 h-10 bg-content1 rounded-lg shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-white text-xs font-medium line-clamp-1">{item.name}</p>
+                    <p className="text-foreground text-xs font-medium line-clamp-1">{item.name}</p>
                     {item.variantName && <p className="text-foreground/40 text-xs">{item.variantName}</p>}
                   </div>
-                  <p className="text-white text-xs whitespace-nowrap">×{item.qty}</p>
+                  <p className="text-foreground text-xs whitespace-nowrap">×{item.qty}</p>
                   <p className="text-primary text-xs font-bold whitespace-nowrap">RM{(item.price * item.qty).toFixed(2)}</p>
                 </div>
               ))}
             </div>
-            <Divider className="bg-[#222]" />
+            <Divider className="bg-divider" />
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-foreground/50">Subtotal</span><span className="text-white">RM{subtotal.toFixed(2)}</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Subtotal</span><span className="text-foreground">RM{subtotal.toFixed(2)}</span></div>
               {discountAmount > 0 && <div className="flex justify-between"><span className="text-foreground/50">Discount</span><span className="text-success">-RM{discountAmount.toFixed(2)}</span></div>}
               {loyaltyDiscount > 0 && <div className="flex justify-between"><span className="text-foreground/50">Loyalty</span><span className="text-success">-RM{loyaltyDiscount.toFixed(2)}</span></div>}
-              <div className="flex justify-between"><span className="text-foreground/50">Shipping</span><span className="text-white">RM{shippingFee.toFixed(2)}</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Shipping</span><span className="text-foreground">RM{shippingFee.toFixed(2)}</span></div>
             </div>
-            <Divider className="bg-[#222]" />
+            <Divider className="bg-divider" />
             <div className="flex justify-between">
-              <span className="text-white font-bold">Total</span>
+              <span className="text-foreground font-bold">Total</span>
               <span className="text-primary font-black">RM{total.toFixed(2)}</span>
             </div>
           </div>

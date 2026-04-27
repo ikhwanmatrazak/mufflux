@@ -19,7 +19,7 @@ export default function BlogPage() {
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="text-center mb-12">
         <div className="accent-stripe mx-auto mb-4" />
-        <h1 className="text-4xl font-black text-white">{t("blog.latestPosts")}</h1>
+        <h1 className="text-4xl font-black text-foreground">{t("blog.latestPosts")}</h1>
       </div>
 
       {loading ? (
@@ -32,7 +32,7 @@ export default function BlogPage() {
             const title = language === "bm" ? post.title_bm : post.title_en;
             return (
               <Link key={post.id} href={`/blog/${post.slug}`}>
-                <Card className="bg-[#111] border border-[#222] hover:border-[#D400A8]/40 transition-colors cursor-pointer h-full">
+                <Card className="bg-content1 border border-divider hover:border-[#D400A8]/40 transition-colors cursor-pointer h-full">
                   <CardBody className="p-0">
                     {post.cover_image_url ? (
                       <div className="relative h-52">
@@ -44,7 +44,7 @@ export default function BlogPage() {
                       </div>
                     )}
                     <div className="p-5">
-                      <h2 className="text-white font-bold line-clamp-2 mb-2">{title}</h2>
+                      <h2 className="text-foreground font-bold line-clamp-2 mb-2">{title}</h2>
                       <p className="text-foreground/40 text-xs">
                         {t("blog.publishedOn")} {post.published_at ? new Date(post.published_at).toLocaleDateString("en-MY", { year: "numeric", month: "long", day: "numeric" }) : "—"}
                       </p>

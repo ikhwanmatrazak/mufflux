@@ -32,14 +32,14 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/"><span className="font-black text-3xl tracking-wider text-white">MUFFLUX</span></Link>
+          <Link href="/"><span className="font-black text-3xl tracking-wider text-foreground">MUFFLUX</span></Link>
           <p className="text-foreground/40 mt-2">Create your account</p>
         </div>
 
-        <Card className="bg-[#111] border border-[#222]">
+        <Card className="bg-content1 border border-divider">
           <CardBody className="p-8 space-y-4">
             <Input label={t("account.name")} variant="bordered" value={form.name} onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))} />
             <Input label={t("account.email")} type="email" variant="bordered" value={form.email} onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))} />
@@ -48,7 +48,7 @@ export default function RegisterPage() {
               label="Password" type={showPwd ? "text" : "password"} variant="bordered"
               value={form.password} onChange={(e) => setForm(f => ({ ...f, password: e.target.value }))}
               endContent={
-                <button onClick={() => setShowPwd(!showPwd)} className="text-foreground/40 hover:text-white">
+                <button onClick={() => setShowPwd(!showPwd)} className="text-foreground/40 hover:text-foreground">
                   {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               }

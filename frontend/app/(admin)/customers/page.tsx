@@ -16,7 +16,7 @@ export default function CustomersPage() {
   return (
     <div className="p-8">
       <div className="mb-6">
-        <h1 className="text-2xl font-black text-white">Customers</h1>
+        <h1 className="text-2xl font-black text-foreground">Customers</h1>
         <p className="text-foreground/40 text-sm">{users.length} registered users</p>
       </div>
 
@@ -26,20 +26,20 @@ export default function CustomersPage() {
       </div>
 
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
-        <Table aria-label="Customers" className="bg-[#111]">
+        <Table aria-label="Customers" className="bg-content1">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">NAME</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">EMAIL</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">PHONE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">LOYALTY PTS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ROLE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">JOINED</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">NAME</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">EMAIL</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">PHONE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">LOYALTY PTS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ROLE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">JOINED</TableColumn>
           </TableHeader>
           <TableBody emptyContent={<p className="text-foreground/30 py-8">No customers found</p>}>
             {filtered.map((u) => (
               <TableRow key={u.id} className="border-b border-[#1a1a1a]">
-                <TableCell className="text-white font-medium">{u.name}</TableCell>
+                <TableCell className="text-foreground font-medium">{u.name}</TableCell>
                 <TableCell className="text-foreground/60 text-sm">{u.email}</TableCell>
                 <TableCell className="text-foreground/60 text-sm">{u.phone || "—"}</TableCell>
                 <TableCell>

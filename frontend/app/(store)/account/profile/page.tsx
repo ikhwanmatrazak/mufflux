@@ -34,8 +34,8 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-10">
-      <h1 className="text-2xl font-black text-white mb-8">{t("account.editProfile")}</h1>
-      <div className="bg-[#111] border border-[#222] rounded-2xl p-6 space-y-4">
+      <h1 className="text-2xl font-black text-foreground mb-8">{t("account.editProfile")}</h1>
+      <div className="bg-content1 border border-divider rounded-2xl p-6 space-y-4">
         <Input label={t("account.name")} variant="bordered" value={form.name} onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))} />
         <Input label={t("account.email")} variant="bordered" value={user.email} isReadOnly className="opacity-60" />
         <Input label={t("account.phone")} variant="bordered" value={form.phone} onChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))} />

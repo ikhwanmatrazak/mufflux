@@ -65,7 +65,7 @@ export default function AdminProductsPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-black text-white">Products</h1>
+          <h1 className="text-2xl font-black text-foreground">Products</h1>
           <p className="text-foreground/40 text-sm">{products.length} total products</p>
         </div>
         <Button color="primary" startContent={<Plus size={16} />} onPress={openAdd} className="font-bold">Add Product</Button>
@@ -77,19 +77,19 @@ export default function AdminProductsPage() {
       </div>
 
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
-        <Table aria-label="Products" className="bg-[#111]">
+        <Table aria-label="Products" className="bg-content1">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">NAME</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">SKU</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">PRICE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STOCK</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ACTIONS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">NAME</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">SKU</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">PRICE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">STOCK</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ACTIONS</TableColumn>
           </TableHeader>
           <TableBody emptyContent={<p className="text-foreground/30 py-8">No products found</p>}>
             {filtered.map((p) => (
               <TableRow key={p.id} className="border-b border-[#1a1a1a]">
-                <TableCell className="text-white font-medium">{p.name_en}</TableCell>
+                <TableCell className="text-foreground font-medium">{p.name_en}</TableCell>
                 <TableCell className="text-foreground/50 text-sm font-mono">{p.sku}</TableCell>
                 <TableCell className="text-primary font-bold">RM{Number(p.price).toFixed(2)}</TableCell>
                 <TableCell>
@@ -114,9 +114,9 @@ export default function AdminProductsPage() {
         </Table>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} size="3xl" className="bg-[#1a1a1a] border border-[#333]" scrollBehavior="inside">
+      <Modal isOpen={isOpen} onClose={onClose} size="3xl" className="bg-content2 border border-divider" scrollBehavior="inside">
         <ModalContent>
-          <ModalHeader className="text-white">{editing ? "Edit Product" : "Add Product"}</ModalHeader>
+          <ModalHeader className="text-foreground">{editing ? "Edit Product" : "Add Product"}</ModalHeader>
           <ModalBody className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Input label="Name (EN)" variant="bordered" value={form.name_en} onChange={(e) => setForm((f: any) => ({ ...f, name_en: e.target.value }))} />

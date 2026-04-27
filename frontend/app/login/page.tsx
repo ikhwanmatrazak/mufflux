@@ -32,7 +32,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0A0A0A] px-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 relative overflow-hidden">
       {/* Background glow blobs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#D400A8]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#7B00FF]/8 rounded-full blur-3xl pointer-events-none" />
@@ -42,7 +42,7 @@ export default function LoginPage() {
         <div className="text-center mb-10">
           <Link href="/">
             <div className="inline-block">
-              <span className="font-black text-4xl tracking-widest text-white drop-shadow-lg">MUFFLUX</span>
+              <span className="font-black text-4xl tracking-widest text-foreground drop-shadow-lg">MUFFLUX</span>
               <div className="h-0.5 bg-gradient-to-r from-transparent via-[#D400A8] to-transparent mt-1" />
             </div>
           </Link>
@@ -50,7 +50,7 @@ export default function LoginPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-[#111]/80 backdrop-blur-sm border border-[#D400A8]/20 rounded-2xl p-8 shadow-2xl shadow-[#D400A8]/5">
+        <div className="bg-content1/80 backdrop-blur-sm border border-[#D400A8]/20 rounded-2xl p-8 shadow-2xl shadow-[#D400A8]/5">
           <div className="space-y-5">
 
             {/* Email field */}
@@ -58,7 +58,7 @@ export default function LoginPage() {
               <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-foreground/50"}`}>
                 Email
               </label>
-              <div className={`flex items-center gap-3 bg-[#1a1a1a] rounded-xl px-4 py-3 border transition-all duration-200 ${
+              <div className={`flex items-center gap-3 bg-content2 rounded-xl px-4 py-3 border transition-all duration-200 ${
                 focused === "email" ? "border-[#D400A8] shadow-[0_0_0_3px_rgba(212,0,168,0.1)]" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
               }`}>
                 <Mail size={16} className={`shrink-0 transition-colors ${focused === "email" || form.email ? "text-[#D400A8]" : "text-foreground/30"}`} />
@@ -70,7 +70,7 @@ export default function LoginPage() {
                   onFocus={() => setFocused("email")}
                   onBlur={() => setFocused(null)}
                   onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-                  className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/20 font-medium"
+                  className="flex-1 bg-transparent text-foreground text-sm outline-none placeholder-white/20 font-medium"
                 />
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function LoginPage() {
               <label className={`block text-xs font-semibold mb-1.5 tracking-wide transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-foreground/50"}`}>
                 Password
               </label>
-              <div className={`flex items-center gap-3 bg-[#1a1a1a] rounded-xl px-4 py-3 border transition-all duration-200 ${
+              <div className={`flex items-center gap-3 bg-content2 rounded-xl px-4 py-3 border transition-all duration-200 ${
                 focused === "password" ? "border-[#D400A8] shadow-[0_0_0_3px_rgba(212,0,168,0.1)]" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
               }`}>
                 <Lock size={16} className={`shrink-0 transition-colors ${focused === "password" || form.password ? "text-[#D400A8]" : "text-foreground/30"}`} />
@@ -92,7 +92,7 @@ export default function LoginPage() {
                   onFocus={() => setFocused("password")}
                   onBlur={() => setFocused(null)}
                   onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-                  className="flex-1 bg-transparent text-white text-sm outline-none placeholder-white/20 font-medium"
+                  className="flex-1 bg-transparent text-foreground text-sm outline-none placeholder-white/20 font-medium"
                 />
                 <button
                   type="button"
@@ -118,9 +118,9 @@ export default function LoginPage() {
 
           {/* Divider */}
           <div className="flex items-center gap-3 my-5">
-            <div className="flex-1 h-px bg-[#222]" />
+            <div className="flex-1 h-px bg-divider" />
             <span className="text-foreground/20 text-xs">or</span>
-            <div className="flex-1 h-px bg-[#222]" />
+            <div className="flex-1 h-px bg-divider" />
           </div>
 
           <p className="text-center text-foreground/40 text-sm">

@@ -70,19 +70,19 @@ function ProductsContent() {
   const FilterSidebar = () => (
     <div className="space-y-4">
       <Accordion variant="splitted" className="gap-3">
-        <AccordionItem key="category" title={<span className="text-white font-semibold text-sm">{t("product.category")}</span>} className="bg-[#111] border border-[#222]">
+        <AccordionItem key="category" title={<span className="text-foreground font-semibold text-sm">{t("product.category")}</span>} className="bg-content1 border border-divider">
           <div className="space-y-2 pb-2">
             {categories.map((c) => (
               <button key={c.id} onClick={() => setFilters((f) => ({ ...f, category: c.slug }))}
                 className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors
-                  ${filters.category === c.slug ? "bg-primary/20 text-primary" : "text-foreground/60 hover:text-white"}`}>
+                  ${filters.category === c.slug ? "bg-primary/20 text-primary" : "text-foreground/60 hover:text-foreground"}`}>
                 {c.name_en}
               </button>
             ))}
           </div>
         </AccordionItem>
 
-        <AccordionItem key="brand" title={<span className="text-white font-semibold text-sm">{t("product.motorcycleBrand")}</span>} className="bg-[#111] border border-[#222]">
+        <AccordionItem key="brand" title={<span className="text-foreground font-semibold text-sm">{t("product.motorcycleBrand")}</span>} className="bg-content1 border border-divider">
           <Select size="sm" placeholder="Select brand" className="w-full"
             onChange={(e) => setFilters((f) => ({ ...f, brand_id: e.target.value, model_id: "" }))}>
             {brands.map((b) => <SelectItem key={b.id}>{b.name}</SelectItem>)}
@@ -95,19 +95,19 @@ function ProductsContent() {
           )}
         </AccordionItem>
 
-        <AccordionItem key="engine" title={<span className="text-white font-semibold text-sm">{t("product.engineCC")}</span>} className="bg-[#111] border border-[#222]">
+        <AccordionItem key="engine" title={<span className="text-foreground font-semibold text-sm">{t("product.engineCC")}</span>} className="bg-content1 border border-divider">
           <div className="grid grid-cols-2 gap-2 pb-2">
             {engines.map((e) => (
               <button key={e.id} onClick={() => setFilters((f) => ({ ...f, cc: String(e.cc) }))}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors
-                  ${filters.cc === String(e.cc) ? "bg-primary border-primary text-white" : "border-[#333] text-foreground/60 hover:border-primary/50"}`}>
+                  ${filters.cc === String(e.cc) ? "bg-primary border-primary text-foreground" : "border-divider text-foreground/60 hover:border-primary/50"}`}>
                 {e.label}
               </button>
             ))}
           </div>
         </AccordionItem>
 
-        <AccordionItem key="price" title={<span className="text-white font-semibold text-sm">{t("product.priceRange")}</span>} className="bg-[#111] border border-[#222]">
+        <AccordionItem key="price" title={<span className="text-foreground font-semibold text-sm">{t("product.priceRange")}</span>} className="bg-content1 border border-divider">
           <div className="px-2 pb-2">
             <Slider
               label={`RM${filters.min_price} — RM${filters.max_price}`}
@@ -131,7 +131,7 @@ function ProductsContent() {
     <div className="max-w-7xl mx-auto px-4 py-10">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-black text-white">{t("nav.products")}</h1>
+          <h1 className="text-3xl font-black text-foreground">{t("nav.products")}</h1>
           <p className="text-foreground/40 text-sm mt-1">{products.length} products</p>
         </div>
         <div className="flex gap-3">
@@ -156,8 +156,8 @@ function ProductsContent() {
         {showFilters && (
           <div className="fixed inset-0 z-50 md:hidden">
             <div className="absolute inset-0 bg-black/80" onClick={() => setShowFilters(false)} />
-            <div className="absolute bottom-0 left-0 right-0 bg-[#111] rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto">
-              <h3 className="text-white font-bold mb-4">{t("product.filter")}</h3>
+            <div className="absolute bottom-0 left-0 right-0 bg-content1 rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto">
+              <h3 className="text-foreground font-bold mb-4">{t("product.filter")}</h3>
               <FilterSidebar />
               <Button color="primary" className="w-full mt-4 font-bold" onPress={() => setShowFilters(false)}>Apply Filters</Button>
             </div>

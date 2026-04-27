@@ -29,29 +29,29 @@ export default function BookingsPage() {
       <div className="flex items-center gap-3 mb-6">
         <Calendar size={24} className="text-primary" />
         <div>
-          <h1 className="text-2xl font-black text-white">Installation Bookings</h1>
+          <h1 className="text-2xl font-black text-foreground">Installation Bookings</h1>
           <p className="text-foreground/40 text-sm">{bookings.length} total bookings</p>
         </div>
       </div>
 
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
-        <Table aria-label="Bookings" className="bg-[#111]">
+        <Table aria-label="Bookings" className="bg-content1">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ID</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">USER</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">DATE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TIME</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">LOCATION</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ORDER</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">UPDATE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ID</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">USER</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">DATE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">TIME</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">LOCATION</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ORDER</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">UPDATE</TableColumn>
           </TableHeader>
           <TableBody emptyContent={<p className="text-foreground/30 py-8">No bookings yet</p>}>
             {bookings.map((b) => (
               <TableRow key={b.id} className="border-b border-[#1a1a1a]">
-                <TableCell className="text-white font-mono">#{b.id}</TableCell>
+                <TableCell className="text-foreground font-mono">#{b.id}</TableCell>
                 <TableCell className="text-foreground/70">User #{b.user_id}</TableCell>
-                <TableCell className="text-white">{b.preferred_date}</TableCell>
+                <TableCell className="text-foreground">{b.preferred_date}</TableCell>
                 <TableCell className="text-foreground/70">{b.preferred_time}</TableCell>
                 <TableCell className="text-foreground/50 text-sm">{b.workshop_location || "—"}</TableCell>
                 <TableCell><Chip size="sm" color={STATUS_COLORS[b.status]} variant="flat" className="capitalize">{b.status}</Chip></TableCell>

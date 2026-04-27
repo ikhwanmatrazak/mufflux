@@ -24,7 +24,7 @@ export default function WishlistPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-black text-white mb-6">{t("account.myWishlist")}</h1>
+      <h1 className="text-2xl font-black text-foreground mb-6">{t("account.myWishlist")}</h1>
       {items.length === 0 ? (
         <div className="text-center py-20">
           <Heart size={64} className="text-white/10 mx-auto mb-4" />
@@ -37,15 +37,15 @@ export default function WishlistPage() {
             const name = language === "bm" ? product.name_bm : product.name_en;
             const img = product.images?.find((i: any) => i.is_primary) || product.images?.[0];
             return (
-              <div key={product.id} className="bg-[#111] border border-[#222] rounded-2xl overflow-hidden hover:border-primary/40 transition-colors">
+              <div key={product.id} className="bg-content1 border border-divider rounded-2xl overflow-hidden hover:border-primary/40 transition-colors">
                 <Link href={`/products/${product.slug}`}>
-                  <div className="aspect-square bg-[#0d0d0d] relative">
+                  <div className="aspect-square bg-content1 relative">
                     {img ? <Image src={img.image_url} alt={name} fill className="object-cover" /> : (
                       <div className="w-full h-full flex items-center justify-center"><span className="text-foreground/20 font-black">MFX</span></div>
                     )}
                   </div>
                   <div className="p-3">
-                    <p className="text-white font-semibold text-sm line-clamp-2">{name}</p>
+                    <p className="text-foreground font-semibold text-sm line-clamp-2">{name}</p>
                     <p className="text-primary font-bold mt-1">RM{Number(product.price).toFixed(2)}</p>
                   </div>
                 </Link>

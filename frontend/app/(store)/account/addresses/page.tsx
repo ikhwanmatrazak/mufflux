@@ -53,7 +53,7 @@ export default function AddressesPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-black text-white">{t("account.myAddresses")}</h1>
+        <h1 className="text-2xl font-black text-foreground">{t("account.myAddresses")}</h1>
         <Button color="primary" size="sm" startContent={<Plus size={14} />} onPress={openAdd}>{t("account.addAddress")}</Button>
       </div>
 
@@ -65,11 +65,11 @@ export default function AddressesPage() {
       ) : (
         <div className="space-y-4">
           {addresses.map((addr) => (
-            <div key={addr.id} className="bg-[#111] border border-[#222] rounded-2xl p-5 flex gap-4">
+            <div key={addr.id} className="bg-content1 border border-divider rounded-2xl p-5 flex gap-4">
               <MapPin size={20} className="text-primary mt-1 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="text-white font-semibold">{addr.label}</p>
+                  <p className="text-foreground font-semibold">{addr.label}</p>
                   {addr.is_default && <Chip size="sm" color="primary" variant="flat">{t("account.default")}</Chip>}
                 </div>
                 <p className="text-foreground/60 text-sm">{addr.address_line1}{addr.address_line2 ? `, ${addr.address_line2}` : ""}</p>
@@ -84,9 +84,9 @@ export default function AddressesPage() {
         </div>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} className="bg-[#1a1a1a] border border-[#333]">
+      <Modal isOpen={isOpen} onClose={onClose} className="bg-content2 border border-divider">
         <ModalContent>
-          <ModalHeader className="text-white">{editing ? t("account.editAddress") : t("account.addAddress")}</ModalHeader>
+          <ModalHeader className="text-foreground">{editing ? t("account.editAddress") : t("account.addAddress")}</ModalHeader>
           <ModalBody className="space-y-3">
             <Input label="Label (e.g. Home, Office)" variant="bordered" value={form.label} onChange={(e) => setForm(f => ({ ...f, label: e.target.value }))} />
             <Input label="Address Line 1" variant="bordered" value={form.address_line1} onChange={(e) => setForm(f => ({ ...f, address_line1: e.target.value }))} />

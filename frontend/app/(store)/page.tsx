@@ -32,8 +32,8 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#0d0010] to-[#0A0A0A]" />
-        <div className="absolute inset-0 opacity-30"
+        <div className="absolute inset-0 bg-background dark:bg-gradient-to-br dark:from-[#0A0A0A] dark:via-[#0d0010] dark:to-[#0A0A0A]" />
+        <div className="absolute inset-0 opacity-20 dark:opacity-30"
           style={{ backgroundImage: "radial-gradient(circle at 50% 50%, #D400A8 0%, transparent 60%)" }}
         />
         {/* Grid pattern */}
@@ -47,7 +47,7 @@ export default function HomePage() {
           </Chip>
 
           <h1 className="text-5xl sm:text-6xl md:text-8xl font-black leading-none mb-4">
-            <span className="block text-white glow-primary">{t("home.tagline")}</span>
+            <span className="block text-foreground glow-primary">{t("home.tagline")}</span>
             <span className="block brand-gradient">{t("home.tagline2")}</span>
           </h1>
 
@@ -95,20 +95,20 @@ export default function HomePage() {
       </section>
 
       {/* FEATURES */}
-      <section className="py-16 px-4 bg-[#060606]">
+      <section className="py-16 px-4 bg-content1">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { icon: Zap, title: "Performance Engineered", desc: "Maximum power, minimum restriction" },
             { icon: Shield, title: "Quality Guaranteed", desc: "Built to withstand Malaysian roads" },
             { icon: Wrench, title: "Expert Installation", desc: "Professional fitting by certified techs" },
           ].map((f) => (
-            <Card key={f.title} className="bg-[#111] border border-[#222] hover:border-[#D400A8]/40 transition-colors">
+            <Card key={f.title} className="bg-content1 border border-divider hover:border-[#D400A8]/40 transition-colors">
               <CardBody className="flex flex-row items-start gap-4 p-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
                   <f.icon size={24} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-1">{f.title}</h3>
+                  <h3 className="text-foreground font-bold mb-1">{f.title}</h3>
                   <p className="text-foreground/50 text-sm">{f.desc}</p>
                 </div>
               </CardBody>
@@ -122,7 +122,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <div className="accent-stripe mx-auto mb-4" />
-            <h2 className="text-4xl font-black text-white">{t("home.featuredProducts")}</h2>
+            <h2 className="text-4xl font-black text-foreground">{t("home.featuredProducts")}</h2>
           </div>
 
           {loading ? (
@@ -144,16 +144,16 @@ export default function HomePage() {
       </section>
 
       {/* SHOP BY BRAND */}
-      <section className="py-16 px-4 bg-[#060606]">
+      <section className="py-16 px-4 bg-content1">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-black text-white">{t("home.shopByBrand")}</h2>
+            <h2 className="text-3xl font-black text-foreground">{t("home.shopByBrand")}</h2>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
             {brands.map((brand) => (
               <Link key={brand.id} href={`/products?brand_id=${brand.id}`}>
-                <div className="snap-start shrink-0 w-32 h-20 bg-[#111] border border-[#222] rounded-xl flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer">
-                  <span className="text-white font-bold text-sm text-center px-2">{brand.name}</span>
+                <div className="snap-start shrink-0 w-32 h-20 bg-content1 border border-divider rounded-xl flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer">
+                  <span className="text-foreground font-bold text-sm text-center px-2">{brand.name}</span>
                 </div>
               </Link>
             ))}
@@ -171,7 +171,7 @@ export default function HomePage() {
             <Chip color="secondary" variant="flat" className="mb-4 font-bold uppercase tracking-widest text-xs">
               {t("home.promoTitle")}
             </Chip>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-3">
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-3">
               10% OFF Your First Order
             </h2>
             <p className="text-foreground/50 mb-6">Use code <span className="text-secondary font-bold">MUFFLUX10</span> at checkout</p>
@@ -184,15 +184,15 @@ export default function HomePage() {
 
       {/* LATEST BLOG */}
       {posts.length > 0 && (
-        <section className="py-20 px-4 bg-[#060606]">
+        <section className="py-20 px-4 bg-content1">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-black text-white">{t("home.latestBlog")}</h2>
+              <h2 className="text-3xl font-black text-foreground">{t("home.latestBlog")}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {posts.map((post) => (
                 <Link key={post.id} href={`/blog/${post.slug}`}>
-                  <Card className="bg-[#111] border border-[#222] hover:border-[#D400A8]/40 transition-colors cursor-pointer">
+                  <Card className="bg-content1 border border-divider hover:border-[#D400A8]/40 transition-colors cursor-pointer">
                     <CardBody className="p-0">
                       {post.cover_image_url && (
                         <div className="relative h-48">
@@ -200,7 +200,7 @@ export default function HomePage() {
                         </div>
                       )}
                       <div className="p-5">
-                        <h3 className="text-white font-bold line-clamp-2">{post.title_en}</h3>
+                        <h3 className="text-foreground font-bold line-clamp-2">{post.title_en}</h3>
                         <p className="text-foreground/40 text-sm mt-2 flex items-center gap-1">
                           {t("blog.publishedOn")} {post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}
                         </p>

@@ -34,7 +34,7 @@ export default function InstallationPage() {
         <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
           <Wrench size={40} className="text-primary" />
         </div>
-        <h1 className="text-4xl font-black text-white">{t("installation.title")}</h1>
+        <h1 className="text-4xl font-black text-foreground">{t("installation.title")}</h1>
         <p className="text-foreground/50 mt-2 text-lg">{t("installation.subtitle")}</p>
       </div>
 
@@ -45,10 +45,10 @@ export default function InstallationPage() {
           { icon: Calendar, title: "Flexible Scheduling", desc: "Book your preferred slot" },
           { icon: MapPin, title: "Multiple Locations", desc: "Workshops across Malaysia" },
         ].map((f) => (
-          <Card key={f.title} className="bg-[#111] border border-[#222]">
+          <Card key={f.title} className="bg-content1 border border-divider">
             <CardBody className="flex flex-col items-center text-center gap-2 py-6">
               <f.icon size={28} className="text-primary" />
-              <p className="text-white font-semibold">{f.title}</p>
+              <p className="text-foreground font-semibold">{f.title}</p>
               <p className="text-foreground/40 text-sm">{f.desc}</p>
             </CardBody>
           </Card>
@@ -57,18 +57,18 @@ export default function InstallationPage() {
 
       {/* Booking Form */}
       {success ? (
-        <Card className="bg-[#111] border border-success/30">
+        <Card className="bg-content1 border border-success/30">
           <CardBody className="flex flex-col items-center gap-4 py-12">
             <CheckCircle size={60} className="text-success" />
-            <h2 className="text-2xl font-black text-white">{t("installation.success")}</h2>
+            <h2 className="text-2xl font-black text-foreground">{t("installation.success")}</h2>
             <p className="text-foreground/50">We'll contact you within 24 hours to confirm your booking.</p>
             <Link href="/products"><Button color="primary" className="mt-2">Continue Shopping</Button></Link>
           </CardBody>
         </Card>
       ) : (
-        <Card className="bg-[#111] border border-[#222]">
+        <Card className="bg-content1 border border-divider">
           <CardBody className="p-8 space-y-5">
-            <h2 className="text-xl font-bold text-white">{t("installation.bookNow")}</h2>
+            <h2 className="text-xl font-bold text-foreground">{t("installation.bookNow")}</h2>
 
             {!user && (
               <div className="bg-primary/10 border border-primary/30 rounded-xl p-4">

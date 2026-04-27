@@ -28,7 +28,7 @@ export default function AccountPage() {
           <span className="text-primary font-black text-2xl">{user.name.charAt(0)}</span>
         </div>
         <div>
-          <h1 className="text-2xl font-black text-white">{user.name}</h1>
+          <h1 className="text-2xl font-black text-foreground">{user.name}</h1>
           <p className="text-foreground/40">{user.email}</p>
         </div>
       </div>
@@ -59,10 +59,10 @@ export default function AccountPage() {
               { href: "/account/profile", icon: User, label: t("account.profile"), color: "text-success" },
             ].map((item) => (
               <Link key={item.href} href={item.href}>
-                <Card className="bg-[#111] border border-[#222] hover:border-[#D400A8]/40 transition-colors cursor-pointer">
+                <Card className="bg-content1 border border-divider hover:border-[#D400A8]/40 transition-colors cursor-pointer">
                   <CardBody className="flex flex-col items-center justify-center gap-2 py-8">
                     <item.icon size={28} className={item.color} />
-                    <span className="text-white text-sm font-semibold text-center">{item.label}</span>
+                    <span className="text-foreground text-sm font-semibold text-center">{item.label}</span>
                   </CardBody>
                 </Card>
               </Link>
@@ -96,7 +96,7 @@ function OrdersTab() {
 function ProfileTab({ user }: { user: any }) {
   const { t } = useTranslation();
   return (
-    <div className="mt-4 bg-[#111] border border-[#222] rounded-2xl p-6">
+    <div className="mt-4 bg-content1 border border-divider rounded-2xl p-6">
       <Link href="/account/profile">
         <Button color="primary" variant="flat" size="sm">{t("account.editProfile")} →</Button>
       </Link>

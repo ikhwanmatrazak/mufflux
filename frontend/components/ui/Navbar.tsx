@@ -198,7 +198,7 @@ export default function SiteNavbar() {
                 <ShoppingCart size={16} />
                 Cart
                 {cartCount > 0 && (
-                  <span className="bg-[#D400A8] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  <span className="bg-[#D400A8] text-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
                     {cartCount}
                   </span>
                 )}
@@ -224,7 +224,7 @@ export default function SiteNavbar() {
                   </>
                 ) : (
                   <Link href="/login" onClick={close}>
-                    <button className="w-full py-2.5 bg-[#D400A8] text-white font-semibold rounded-xl text-sm hover:bg-[#D400A8]/80 transition-colors">
+                    <button className="w-full py-2.5 bg-[#D400A8] text-foreground font-semibold rounded-xl text-sm hover:bg-[#D400A8]/80 transition-colors">
                       {t("nav.login")}
                     </button>
                   </Link>

@@ -70,12 +70,12 @@ export default function AdminOrdersPage() {
     <div className="p-8">
       <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-white">Orders</h1>
+          <h1 className="text-2xl font-black text-foreground">Orders</h1>
           <p className="text-foreground/40 text-sm">{orders.length} total orders</p>
         </div>
 
         {/* Download Report */}
-        <div className="flex flex-wrap items-end gap-2 bg-[#111] border border-[#333] rounded-xl p-3">
+        <div className="flex flex-wrap items-end gap-2 bg-content1 border border-divider rounded-xl p-3">
           <div>
             <p className="text-foreground/40 text-xs mb-1">From</p>
             <Input
@@ -84,7 +84,7 @@ export default function AdminOrdersPage() {
               variant="bordered"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              classNames={{ input: "text-white text-sm", inputWrapper: "border-[#333] bg-[#1a1a1a]" }}
+              classNames={{ input: "text-foreground text-sm", inputWrapper: "border-divider bg-content2" }}
             />
           </div>
           <div>
@@ -95,7 +95,7 @@ export default function AdminOrdersPage() {
               variant="bordered"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              classNames={{ input: "text-white text-sm", inputWrapper: "border-[#333] bg-[#1a1a1a]" }}
+              classNames={{ input: "text-foreground text-sm", inputWrapper: "border-divider bg-content2" }}
             />
           </div>
           <Button
@@ -112,20 +112,20 @@ export default function AdminOrdersPage() {
       </div>
 
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
-        <Table aria-label="Orders" className="bg-[#111]">
+        <Table aria-label="Orders" className="bg-content1">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ORDER ID</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">DATE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">CUSTOMER</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TOTAL</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TRACKING</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ACTIONS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ORDER ID</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">DATE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">CUSTOMER</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">TOTAL</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">TRACKING</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ACTIONS</TableColumn>
           </TableHeader>
           <TableBody emptyContent={<p className="text-foreground/30 py-8">No orders yet</p>}>
             {orders.map((order) => (
               <TableRow key={order.id} className="border-b border-[#1a1a1a]">
-                <TableCell className="text-white font-mono font-bold">#{order.id}</TableCell>
+                <TableCell className="text-foreground font-mono font-bold">#{order.id}</TableCell>
                 <TableCell className="text-foreground/50 text-sm">
                   {new Date(order.created_at).toLocaleDateString()}
                 </TableCell>
@@ -145,7 +145,7 @@ export default function AdminOrdersPage() {
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="bordered" className="border-[#333] text-foreground/60" onPress={() => openUpdate(order)}>
+                    <Button size="sm" variant="bordered" className="border-divider text-foreground/60" onPress={() => openUpdate(order)}>
                       Update
                     </Button>
                     {["paid", "processing", "shipped", "delivered"].includes(order.status) && (
@@ -167,9 +167,9 @@ export default function AdminOrdersPage() {
         </Table>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} className="bg-[#1a1a1a] border border-[#333]">
+      <Modal isOpen={isOpen} onClose={onClose} className="bg-content2 border border-divider">
         <ModalContent>
-          <ModalHeader className="text-white">Update Order #{selected?.id}</ModalHeader>
+          <ModalHeader className="text-foreground">Update Order #{selected?.id}</ModalHeader>
           <ModalBody className="space-y-4">
             <Select label="Status" variant="bordered" selectedKeys={[newStatus]} onChange={(e) => setNewStatus(e.target.value)}>
               {STATUSES.map((s) => <SelectItem key={s} className="capitalize">{s}</SelectItem>)}

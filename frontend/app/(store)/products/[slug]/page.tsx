@@ -69,7 +69,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         {/* Image Gallery */}
         <div>
-          <div className="relative aspect-square bg-[#111] rounded-2xl overflow-hidden border border-[#222] mb-4">
+          <div className="relative aspect-square bg-content1 rounded-2xl overflow-hidden border border-divider mb-4">
             {product.images?.[selectedImage] ? (
               <Image
                 src={product.images[selectedImage].image_url}
@@ -79,7 +79,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <span className="text-white/20 text-6xl font-black">MFX</span>
+                <span className="text-foreground/20 text-6xl font-black">MFX</span>
               </div>
             )}
           </div>
@@ -88,7 +88,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               {product.images.map((img: any, i: number) => (
                 <button key={i} onClick={() => setSelectedImage(i)}
                   className={`relative shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all
-                    ${selectedImage === i ? "border-primary" : "border-[#222]"}`}>
+                    ${selectedImage === i ? "border-primary" : "border-divider"}`}>
                   <Image src={img.image_url} alt="" className="w-full h-full object-cover" removeWrapper />
                 </button>
               ))}
@@ -99,15 +99,15 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         {/* Product Info */}
         <div className="space-y-6">
           <div>
-            <p className="text-white/40 text-sm mb-1">SKU: {product.sku}</p>
-            <h1 className="text-3xl font-black text-white leading-tight">{name}</h1>
+            <p className="text-foreground/40 text-sm mb-1">SKU: {product.sku}</p>
+            <h1 className="text-3xl font-black text-foreground leading-tight">{name}</h1>
             <div className="flex items-center gap-2 mt-3">
               <div className="flex gap-1">
                 {[1,2,3,4,5].map((s) => (
-                  <Star key={s} size={14} className={s <= Math.round(avgRating) ? "text-secondary" : "text-white/20"} fill="currentColor" />
+                  <Star key={s} size={14} className={s <= Math.round(avgRating) ? "text-secondary" : "text-foreground/20"} fill="currentColor" />
                 ))}
               </div>
-              <span className="text-white/40 text-sm">({approvedReviews.length} reviews)</span>
+              <span className="text-foreground/40 text-sm">({approvedReviews.length} reviews)</span>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
           <div className="flex items-end gap-3">
             <span className="text-4xl font-black text-primary">RM{price.toFixed(2)}</span>
             {product.compare_price && Number(product.compare_price) > price && (
-              <span className="text-white/30 line-through text-xl">RM{Number(product.compare_price).toFixed(2)}</span>
+              <span className="text-foreground/30 line-through text-xl">RM{Number(product.compare_price).toFixed(2)}</span>
             )}
           </div>
 
@@ -143,13 +143,13 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
           {/* Variant Selector */}
           {product.variants?.length > 0 && (
             <div>
-              <p className="text-white/60 text-sm mb-2">{t("product.variant")}</p>
+              <p className="text-foreground/60 text-sm mb-2">{t("product.variant")}</p>
               <RadioGroup orientation="horizontal" value={selectedVariant?.id?.toString()}
                 onValueChange={(v) => setSelectedVariant(product.variants.find((va: any) => va.id.toString() === v))}>
                 {product.variants.map((v: any) => (
                   <Radio key={v.id} value={v.id.toString()}
-                    classNames={{ base: "border border-[#333] rounded-lg px-4 py-2 hover:border-primary/50 data-[selected=true]:border-primary" }}>
-                    <span className="text-white text-sm">{v.variant_name}</span>
+                    classNames={{ base: "border border-divider rounded-lg px-4 py-2 hover:border-primary/50 data-[selected=true]:border-primary" }}>
+                    <span className="text-foreground text-sm">{v.variant_name}</span>
                     {v.price_modifier !== 0 && (
                       <span className="text-primary text-xs ml-1">
                         {v.price_modifier > 0 ? "+" : ""}RM{Number(v.price_modifier).toFixed(2)}
@@ -163,10 +163,10 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
 
           {/* Qty */}
           <div className="flex items-center gap-4">
-            <p className="text-white/60 text-sm">{t("product.qty")}</p>
-            <div className="flex items-center gap-3 bg-[#111] border border-[#222] rounded-xl p-1">
+            <p className="text-foreground/60 text-sm">{t("product.qty")}</p>
+            <div className="flex items-center gap-3 bg-content1 border border-divider rounded-xl p-1">
               <Button isIconOnly size="sm" variant="flat" onPress={() => setQty(Math.max(1, qty - 1))}><Minus size={14} /></Button>
-              <span className="text-white font-bold w-8 text-center">{qty}</span>
+              <span className="text-foreground font-bold w-8 text-center">{qty}</span>
               <Button isIconOnly size="sm" variant="flat" onPress={() => setQty(Math.min(stockQty, qty + 1))}><Plus size={14} /></Button>
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               isDisabled={stockQty === 0} onPress={handleAddToCart}>
               {t("product.addToCart")}
             </Button>
-            <Button variant="bordered" size="lg" className={inWishlist ? "border-primary text-primary" : "border-[#333] text-white/60"}
+            <Button variant="bordered" size="lg" className={inWishlist ? "border-primary text-primary" : "border-divider text-foreground/60"}
               isIconOnly onPress={() => inWishlist ? removeFromWishlist(product.id) : addToWishlist(product)}>
               <Heart size={18} fill={inWishlist ? "currentColor" : "none"} />
             </Button>
@@ -194,21 +194,21 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
       {/* Tabs */}
       <Tabs color="primary" className="w-full">
         <Tab key="description" title={t("product.description")}>
-          <div className="bg-[#111] border border-[#222] rounded-2xl p-6 mt-4">
+          <div className="bg-content1 border border-divider rounded-2xl p-6 mt-4">
             {description ? (
-              <div className="text-white/70 leading-relaxed whitespace-pre-wrap">{description}</div>
+              <div className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{description}</div>
             ) : (
-              <p className="text-white/30">No description available.</p>
+              <p className="text-foreground/30">No description available.</p>
             )}
           </div>
         </Tab>
 
         <Tab key="fitment" title={t("product.fitment")}>
-          <div className="bg-[#111] border border-[#222] rounded-2xl p-6 mt-4">
+          <div className="bg-content1 border border-divider rounded-2xl p-6 mt-4">
             {product.fitments?.length > 0 ? (
               <div className="space-y-3">
                 {product.fitments.map((f: any) => (
-                  <div key={f.id} className="flex gap-4 py-3 border-b border-[#222] last:border-0">
+                  <div key={f.id} className="flex gap-4 py-3 border-b border-divider last:border-0">
                     <Chip size="sm" variant="flat" color="primary">Brand ID: {f.brand_id}</Chip>
                     <Chip size="sm" variant="flat" color="secondary">Model ID: {f.model_id}</Chip>
                     {f.engine_size_id && <Chip size="sm" variant="flat">Engine ID: {f.engine_size_id}</Chip>}
@@ -216,19 +216,19 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 ))}
               </div>
             ) : (
-              <p className="text-white/30">No fitment data available.</p>
+              <p className="text-foreground/30">No fitment data available.</p>
             )}
           </div>
         </Tab>
 
         <Tab key="reviews" title={`${t("product.reviews")} (${approvedReviews.length})`}>
-          <div className="bg-[#111] border border-[#222] rounded-2xl p-6 mt-4 space-y-6">
+          <div className="bg-content1 border border-divider rounded-2xl p-6 mt-4 space-y-6">
             {/* Rating Summary */}
             <div className="flex items-center gap-6">
               <div className="text-center">
-                <div className="text-5xl font-black text-white">{avgRating.toFixed(1)}</div>
+                <div className="text-5xl font-black text-foreground">{avgRating.toFixed(1)}</div>
                 <div className="flex gap-0.5 justify-center mt-1">
-                  {[1,2,3,4,5].map((s) => <Star key={s} size={12} className={s <= Math.round(avgRating) ? "text-secondary" : "text-white/20"} fill="currentColor" />)}
+                  {[1,2,3,4,5].map((s) => <Star key={s} size={12} className={s <= Math.round(avgRating) ? "text-secondary" : "text-foreground/20"} fill="currentColor" />)}
                 </div>
               </div>
               <div className="flex-1 space-y-1.5">
@@ -237,9 +237,9 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                   const pct = approvedReviews.length ? (count / approvedReviews.length) * 100 : 0;
                   return (
                     <div key={rating} className="flex items-center gap-3">
-                      <span className="text-white/40 text-xs w-4">{rating}</span>
+                      <span className="text-foreground/40 text-xs w-4">{rating}</span>
                       <Progress value={pct} color="secondary" size="sm" className="flex-1" />
-                      <span className="text-white/30 text-xs w-4">{count}</span>
+                      <span className="text-foreground/30 text-xs w-4">{count}</span>
                     </div>
                   );
                 })}
@@ -247,16 +247,16 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </div>
 
             {approvedReviews.length === 0 ? (
-              <p className="text-white/30 text-center py-4">{t("product.noReviews")}</p>
+              <p className="text-foreground/30 text-center py-4">{t("product.noReviews")}</p>
             ) : (
               <div className="space-y-4">
                 {approvedReviews.map((r: any) => (
-                  <div key={r.id} className="border-b border-[#222] pb-4 last:border-0">
+                  <div key={r.id} className="border-b border-divider pb-4 last:border-0">
                     <div className="flex gap-1 mb-2">
-                      {[1,2,3,4,5].map((s) => <Star key={s} size={12} className={s <= r.rating ? "text-secondary" : "text-white/20"} fill="currentColor" />)}
+                      {[1,2,3,4,5].map((s) => <Star key={s} size={12} className={s <= r.rating ? "text-secondary" : "text-foreground/20"} fill="currentColor" />)}
                     </div>
-                    <p className="text-white/70 text-sm">{r.comment}</p>
-                    <p className="text-white/30 text-xs mt-2">{new Date(r.created_at).toLocaleDateString()}</p>
+                    <p className="text-foreground/70 text-sm">{r.comment}</p>
+                    <p className="text-foreground/30 text-xs mt-2">{new Date(r.created_at).toLocaleDateString()}</p>
                   </div>
                 ))}
               </div>

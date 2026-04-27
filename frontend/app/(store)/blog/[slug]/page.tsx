@@ -45,12 +45,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <div className="max-w-3xl mx-auto px-4 py-10">
       <div className="flex items-center gap-4 mb-8">
         <Link href="/blog">
-          <Button isIconOnly variant="light" size="sm" className="text-white/50"><ArrowLeft size={18} /></Button>
+          <Button isIconOnly variant="light" size="sm" className="text-foreground/50"><ArrowLeft size={18} /></Button>
         </Link>
-        <Button size="sm" variant="bordered" className="border-[#333] text-white/60 ml-auto" onPress={toggleLang}>
+        <Button size="sm" variant="bordered" className="border-divider text-foreground/60 ml-auto" onPress={toggleLang}>
           {language === "en" ? "🇲🇾 BM" : "🇬🇧 EN"}
         </Button>
-        <Button size="sm" variant="light" className="text-white/50" startContent={<Share2 size={14} />} onPress={handleShare}>
+        <Button size="sm" variant="light" className="text-foreground/50" startContent={<Share2 size={14} />} onPress={handleShare}>
           {t("blog.share")}
         </Button>
       </div>
@@ -61,18 +61,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">{title}</h1>
+      <h1 className="text-3xl md:text-4xl font-black text-foreground mb-4 leading-tight">{title}</h1>
 
       <div className="flex items-center gap-3 mb-8">
         <Chip size="sm" color="primary" variant="flat">Blog</Chip>
-        <span className="text-white/40 text-sm">
+        <span className="text-foreground/40 text-sm">
           {t("blog.publishedOn")} {post.published_at ? new Date(post.published_at).toLocaleDateString("en-MY", { year: "numeric", month: "long", day: "numeric" }) : "—"}
         </span>
       </div>
 
       <div
-        className="text-white/70 leading-relaxed prose prose-invert max-w-none
-          prose-headings:text-white prose-strong:text-white prose-a:text-primary"
+        className="text-foreground/70 leading-relaxed prose prose-invert max-w-none
+          prose-headings:text-foreground prose-strong:text-foreground prose-a:text-primary"
         dangerouslySetInnerHTML={{ __html: body || "<p>No content available.</p>" }}
       />
     </div>

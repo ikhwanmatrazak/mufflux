@@ -17,8 +17,8 @@ function TiptapEditor({ value, onChange }: { value: string; onChange: (v: string
     },
   });
   return (
-    <div className="border border-[#333] rounded-xl overflow-hidden bg-[#111]">
-      <div className="border-b border-[#222] p-2 flex gap-2">
+    <div className="border border-divider rounded-xl overflow-hidden bg-content1">
+      <div className="border-b border-divider p-2 flex gap-2">
         {[
           { label: "B", cmd: () => editor?.chain().focus().toggleBold().run() },
           { label: "I", cmd: () => editor?.chain().focus().toggleItalic().run() },
@@ -26,7 +26,7 @@ function TiptapEditor({ value, onChange }: { value: string; onChange: (v: string
           { label: "UL", cmd: () => editor?.chain().focus().toggleBulletList().run() },
         ].map((b) => (
           <button key={b.label} onMouseDown={(e) => { e.preventDefault(); b.cmd(); }}
-            className="px-3 py-1 text-xs font-bold text-foreground/60 hover:text-white hover:bg-foreground/10 rounded-lg transition-colors">
+            className="px-3 py-1 text-xs font-bold text-foreground/60 hover:text-foreground hover:bg-foreground/10 rounded-lg transition-colors">
             {b.label}
           </button>
         ))}
@@ -71,23 +71,23 @@ export default function AdminBlogPage() {
   return (
     <div className="p-8">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-black text-white">Blog Posts</h1>
+        <h1 className="text-2xl font-black text-foreground">Blog Posts</h1>
         <Button color="primary" startContent={<Plus size={16} />} onPress={openAdd} className="font-bold">Add Post</Button>
       </div>
 
       {loading ? <div className="flex justify-center py-20"><Spinner color="primary" /></div> : (
-        <Table aria-label="Blog" className="bg-[#111]">
+        <Table aria-label="Blog" className="bg-content1">
           <TableHeader>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">TITLE</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">SLUG</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">STATUS</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">PUBLISHED</TableColumn>
-            <TableColumn className="bg-[#1a1a1a] text-foreground/60">ACTIONS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">TITLE</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">SLUG</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">STATUS</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">PUBLISHED</TableColumn>
+            <TableColumn className="bg-content2 text-foreground/60">ACTIONS</TableColumn>
           </TableHeader>
           <TableBody emptyContent={<p className="text-foreground/30 py-8">No posts yet</p>}>
             {posts.map((post) => (
               <TableRow key={post.id} className="border-b border-[#1a1a1a]">
-                <TableCell className="text-white font-medium">{post.title_en}</TableCell>
+                <TableCell className="text-foreground font-medium">{post.title_en}</TableCell>
                 <TableCell className="text-foreground/40 text-sm font-mono">{post.slug}</TableCell>
                 <TableCell><Chip size="sm" color={post.is_published ? "success" : "default"} variant="flat">{post.is_published ? "Published" : "Draft"}</Chip></TableCell>
                 <TableCell className="text-foreground/40 text-sm">{post.published_at ? new Date(post.published_at).toLocaleDateString() : "—"}</TableCell>
@@ -102,9 +102,9 @@ export default function AdminBlogPage() {
         </Table>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} size="4xl" className="bg-[#1a1a1a] border border-[#333]" scrollBehavior="inside">
+      <Modal isOpen={isOpen} onClose={onClose} size="4xl" className="bg-content2 border border-divider" scrollBehavior="inside">
         <ModalContent>
-          <ModalHeader className="text-white">{editing ? "Edit Post" : "New Post"}</ModalHeader>
+          <ModalHeader className="text-foreground">{editing ? "Edit Post" : "New Post"}</ModalHeader>
           <ModalBody className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Input label="Title (EN)" variant="bordered" value={form.title_en} onChange={(e) => setForm((f: any) => ({ ...f, title_en: e.target.value }))} />
