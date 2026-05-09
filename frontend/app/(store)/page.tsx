@@ -135,9 +135,7 @@ export default function HomePage() {
 
           <div className="text-center mt-10">
             <Link href="/products">
-              <Button color="primary" variant="bordered" size="lg" endContent={<ArrowRight size={16} />} className="font-bold">
-                View All Products
-              </Button>
+              <Button color="primary" variant="bordered" size="lg" endContent={<ArrowRight size={16} />} className="font-bold">View All Products</Button>
             </Link>
           </div>
         </div>
@@ -176,7 +174,7 @@ export default function HomePage() {
             </h2>
             <p className="text-foreground/50 mb-6">Use code <span className="text-secondary font-bold">MUFFLUX10</span> at checkout</p>
             <Link href="/products">
-              <Button color="primary" size="lg" className="font-bold">Shop Now</Button>
+              <Button color="primary" size="lg" endContent={<ArrowRight size={16} />} className="font-bold">Shop Now</Button>
             </Link>
           </div>
         </div>
