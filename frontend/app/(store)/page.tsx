@@ -52,7 +52,8 @@ export default function HomePage() {
           </h1>
 
           <p className="text-foreground/50 text-base md:text-xl mt-6 mb-8 max-w-2xl mx-auto px-2">
-            Malaysian Performance Exhaust Brand — PERFORMANCE. MEROKET.
+            Malaysian Performance Exhaust Brand<br />
+            PERFORMANCE. MEROKET.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center px-4 sm:px-0">
@@ -60,10 +61,9 @@ export default function HomePage() {
               <Button
                 color="primary"
                 size="lg"
-                className="font-bold text-base w-full sm:w-auto px-8"
-                endContent={<ArrowRight size={18} />}
+                className="font-bold text-base w-full sm:w-auto px-8 inline-flex items-center gap-2"
               >
-                {t("home.shopNow")}
+                {t("home.shopNow")} <ArrowRight size={18} />
               </Button>
             </Link>
             <Link href="/installation" className="w-full sm:w-auto">

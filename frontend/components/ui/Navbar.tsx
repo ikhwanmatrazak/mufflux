@@ -57,9 +57,9 @@ export default function SiteNavbar() {
             <Image
               src="/mufflux.png"
               alt="Mufflux"
-              width={160}
-              height={54}
-              className="object-contain h-14 md:h-11 w-auto"
+              width={220}
+              height={72}
+              className="object-contain h-16 md:h-14 w-auto"
               priority
             />
           </Link>
