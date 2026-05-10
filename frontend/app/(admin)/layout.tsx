@@ -4,12 +4,13 @@ import { useUserStore } from "@/store/userStore";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingBag, Users, BookOpen, Calendar, Settings, LogOut, ChevronRight } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingBag, Users, BookOpen, Calendar, Settings, LogOut, ChevronRight, Bike } from "lucide-react";
 import { Button } from "@heroui/react";
 
 const NAV = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/products-admin", icon: Package, label: "Products" },
+  { href: "/motorcycles-admin", icon: Bike, label: "Motorcycles" },
   { href: "/orders-admin", icon: ShoppingBag, label: "Orders" },
   { href: "/customers", icon: Users, label: "Customers" },
   { href: "/blog-admin", icon: BookOpen, label: "Blog" },

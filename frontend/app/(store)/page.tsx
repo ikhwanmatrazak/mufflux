@@ -150,8 +150,15 @@ export default function HomePage() {
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
             {brands.map((brand) => (
               <Link key={brand.id} href={`/products?brand_id=${brand.id}`}>
-                <div className="snap-start shrink-0 w-32 h-20 bg-content1 border border-divider rounded-xl flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer">
-                  <span className="text-foreground font-bold text-sm text-center px-2">{brand.name}</span>
+                <div className="snap-start shrink-0 w-36 h-24 bg-content1 border border-divider rounded-2xl flex flex-col items-center justify-center gap-2 px-3 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer group">
+                  {brand.logo_url ? (
+                    <img src={brand.logo_url} alt={brand.name} className="h-10 w-auto max-w-[80px] object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-lg bg-content2 flex items-center justify-center">
+                      <span className="text-foreground/40 font-black text-lg">{brand.name.charAt(0)}</span>
+                    </div>
+                  )}
+                  <span className="text-foreground/60 group-hover:text-foreground font-semibold text-xs text-center transition-colors">{brand.name}</span>
                 </div>
               </Link>
             ))}

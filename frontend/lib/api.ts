@@ -76,6 +76,25 @@ export const motorcycleApi = {
   brands: () => api.get("/motorcycle/brands"),
   models: (brandId?: number) => api.get("/motorcycle/models", { params: { brand_id: brandId } }),
   engines: () => api.get("/motorcycle/engines"),
+
+  createBrand: (data: { name: string }) => api.post("/motorcycle/brands", data),
+  updateBrand: (id: number, data: { name?: string }) => api.put(`/motorcycle/brands/${id}`, data),
+  deleteBrand: (id: number) => api.delete(`/motorcycle/brands/${id}`),
+  uploadBrandLogo: (id: number, file: File) => {
+    const form = new FormData();
+    form.append("file", file);
+    return api.post(`/motorcycle/brands/${id}/logo`, form, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
+
+  createModel: (data: { brand_id: number; name: string; year_from: number; year_to?: number | null }) =>
+    api.post("/motorcycle/models", data),
+  updateModel: (id: number, data: any) => api.put(`/motorcycle/models/${id}`, data),
+  deleteModel: (id: number) => api.delete(`/motorcycle/models/${id}`),
+
+  createEngine: (data: { cc: number; label: string }) => api.post("/motorcycle/engines", data),
+  deleteEngine: (id: number) => api.delete(`/motorcycle/engines/${id}`),
 };
 
 export const ordersApi = {
