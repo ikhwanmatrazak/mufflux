@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useUserStore } from "@/store/userStore";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { LayoutDashboard, Package, ShoppingBag, Users, BookOpen, Calendar, Settings, LogOut, ChevronRight } from "lucide-react";
 import { Button } from "@heroui/react";
@@ -31,9 +32,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}
       <aside className="w-64 bg-content1 border-r border-divider flex flex-col shrink-0">
-        <div className="p-6 border-b border-divider">
-          <Link href="/">
-            <span className="font-black text-xl text-foreground tracking-wider">MUFFLUX</span>
+        <div className="p-5 border-b border-divider">
+          <Link href="/" className="inline-block">
+            <Image src="/mufflux.png" alt="Mufflux" width={140} height={46} className="object-contain" priority />
           </Link>
           <p className="text-foreground/30 text-xs mt-1">Admin Panel</p>
         </div>
