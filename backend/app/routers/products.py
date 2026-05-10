@@ -38,6 +38,57 @@ def list_engines(db: Session = Depends(get_db)):
     return db.query(EngineSize).order_by(EngineSize.cc).all()
 
 
+# ── Admin CRUD for motorcycle data ──────────────────────────────────────────
+
+@router.post("/motorcycle/brands")
+def create_brand(payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    brand = MotorcycleBrand(name=payload["name"], logo_url=payload.get("logo_url"))
+    db.add(brand); db.commit(); db.refresh(brand)
+    return brand
+
+@router.put("/motorcycle/brands/{brand_id}")
+def update_brand(brand_id: int, payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    brand = db.query(MotorcycleBrand).filter_by(id=brand_id).first()
+    if not brand: raise HTTPException(404)
+    for k, v in payload.items(): setattr(brand, k, v)
+    db.commit(); db.refresh(brand); return brand
+
+@router.delete("/motorcycle/brands/{brand_id}")
+def delete_brand(brand_id: int, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    brand = db.query(MotorcycleBrand).filter_by(id=brand_id).first()
+    if not brand: raise HTTPException(404)
+    db.delete(brand); db.commit(); return {"ok": True}
+
+@router.post("/motorcycle/models")
+def create_model(payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    model = MotorcycleModel(name=payload["name"], brand_id=payload["brand_id"], year_start=payload.get("year_start"), year_end=payload.get("year_end"))
+    db.add(model); db.commit(); db.refresh(model); return model
+
+@router.put("/motorcycle/models/{model_id}")
+def update_model(model_id: int, payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    model = db.query(MotorcycleModel).filter_by(id=model_id).first()
+    if not model: raise HTTPException(404)
+    for k, v in payload.items(): setattr(model, k, v)
+    db.commit(); db.refresh(model); return model
+
+@router.delete("/motorcycle/models/{model_id}")
+def delete_model(model_id: int, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    model = db.query(MotorcycleModel).filter_by(id=model_id).first()
+    if not model: raise HTTPException(404)
+    db.delete(model); db.commit(); return {"ok": True}
+
+@router.post("/motorcycle/engines")
+def create_engine(payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    engine = EngineSize(cc=payload["cc"], label=payload.get("label", f"{payload['cc']}cc"))
+    db.add(engine); db.commit(); db.refresh(engine); return engine
+
+@router.delete("/motorcycle/engines/{engine_id}")
+def delete_engine(engine_id: int, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    engine = db.query(EngineSize).filter_by(id=engine_id).first()
+    if not engine: raise HTTPException(404)
+    db.delete(engine); db.commit(); return {"ok": True}
+
+
 @router.get("/products", response_model=List[ProductListOut])
 def list_products(
     category: Optional[str] = None,

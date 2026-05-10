@@ -88,8 +88,8 @@ export default function ProductCard({ product, loading }: ProductCardProps) {
                 className="object-cover transition-transform duration-300 hover:scale-105"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-foreground/20 text-4xl font-black">MFX</span>
+              <div className="w-full h-full flex items-center justify-center bg-content2">
+                <Image src="/mufflux.jpeg" alt="Mufflux" fill className="object-contain p-4 opacity-30" />
               </div>
             )}
 

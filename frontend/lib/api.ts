@@ -76,6 +76,14 @@ export const motorcycleApi = {
   brands: () => api.get("/motorcycle/brands"),
   models: (brandId?: number) => api.get("/motorcycle/models", { params: { brand_id: brandId } }),
   engines: () => api.get("/motorcycle/engines"),
+  createBrand: (data: any) => api.post("/motorcycle/brands", data),
+  updateBrand: (id: number, data: any) => api.put(`/motorcycle/brands/${id}`, data),
+  deleteBrand: (id: number) => api.delete(`/motorcycle/brands/${id}`),
+  createModel: (data: any) => api.post("/motorcycle/models", data),
+  updateModel: (id: number, data: any) => api.put(`/motorcycle/models/${id}`, data),
+  deleteModel: (id: number) => api.delete(`/motorcycle/models/${id}`),
+  createEngine: (data: any) => api.post("/motorcycle/engines", data),
+  deleteEngine: (id: number) => api.delete(`/motorcycle/engines/${id}`),
 };
 
 export const ordersApi = {
