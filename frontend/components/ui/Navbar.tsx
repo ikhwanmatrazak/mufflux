@@ -55,11 +55,11 @@ export default function SiteNavbar() {
             className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:mr-auto"
           >
             <Image
-              src="/mufflux.jpeg"
+              src="/mufflux.png"
               alt="Mufflux"
-              width={160}
-              height={54}
-              className="object-contain h-14 md:h-11 w-auto"
+              width={220}
+              height={72}
+              className="object-contain h-16 md:h-14 w-auto"
               priority
             />
           </Link>

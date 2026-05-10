@@ -52,7 +52,8 @@ export default function HomePage() {
           </h1>
 
           <p className="text-foreground/50 text-base md:text-xl mt-6 mb-8 max-w-2xl mx-auto px-2">
-            Malaysian Performance Exhaust Brand — PERFORMANCE. MEROKET.
+            Malaysian Performance Exhaust Brand<br />
+            PERFORMANCE. MEROKET.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center px-4 sm:px-0">
@@ -60,10 +61,9 @@ export default function HomePage() {
               <Button
                 color="primary"
                 size="lg"
-                className="font-bold text-base w-full sm:w-auto px-8"
-                endContent={<ArrowRight size={18} />}
+                className="font-bold text-base w-full sm:w-auto px-8 inline-flex items-center gap-2"
               >
-                {t("home.shopNow")}
+                {t("home.shopNow")} <ArrowRight size={18} />
               </Button>
             </Link>
             <Link href="/installation" className="w-full sm:w-auto">
@@ -135,9 +135,7 @@ export default function HomePage() {
 
           <div className="text-center mt-10">
             <Link href="/products">
-              <Button color="primary" variant="bordered" size="lg" endContent={<ArrowRight size={16} />} className="font-bold">
-                View All Products
-              </Button>
+              <Button color="primary" variant="bordered" size="lg" endContent={<ArrowRight size={16} />} className="font-bold">View All Products</Button>
             </Link>
           </div>
         </div>
@@ -152,8 +150,15 @@ export default function HomePage() {
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
             {brands.map((brand) => (
               <Link key={brand.id} href={`/products?brand_id=${brand.id}`}>
-                <div className="snap-start shrink-0 w-32 h-20 bg-content1 border border-divider rounded-xl flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer">
-                  <span className="text-foreground font-bold text-sm text-center px-2">{brand.name}</span>
+                <div className="snap-start shrink-0 w-36 h-24 bg-content1 border border-divider rounded-2xl flex flex-col items-center justify-center gap-2 px-3 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer group">
+                  {brand.logo_url ? (
+                    <img src={brand.logo_url} alt={brand.name} className="h-10 w-auto max-w-[80px] object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-lg bg-content2 flex items-center justify-center">
+                      <span className="text-foreground/40 font-black text-lg">{brand.name.charAt(0)}</span>
+                    </div>
+                  )}
+                  <span className="text-foreground/60 group-hover:text-foreground font-semibold text-xs text-center transition-colors">{brand.name}</span>
                 </div>
               </Link>
             ))}
@@ -176,7 +181,7 @@ export default function HomePage() {
             </h2>
             <p className="text-foreground/50 mb-6">Use code <span className="text-secondary font-bold">MUFFLUX10</span> at checkout</p>
             <Link href="/products">
-              <Button color="primary" size="lg" className="font-bold">Shop Now</Button>
+              <Button color="primary" size="lg" endContent={<ArrowRight size={16} />} className="font-bold">Shop Now</Button>
             </Link>
           </div>
         </div>

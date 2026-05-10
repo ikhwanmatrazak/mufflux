@@ -152,3 +152,30 @@ class ReviewCreate(BaseModel):
     comment: Optional[str] = None
 
     model_config = {}
+
+
+class MotorcycleBrandCreate(BaseModel):
+    name: str
+
+
+class MotorcycleBrandUpdate(BaseModel):
+    name: Optional[str] = None
+
+
+class MotorcycleModelCreate(BaseModel):
+    brand_id: int
+    name: str
+    year_from: int
+    year_to: Optional[int] = None
+
+
+class MotorcycleModelUpdate(BaseModel):
+    name: Optional[str] = None
+    brand_id: Optional[int] = None
+    year_from: Optional[int] = None
+    year_to: Optional[int] = None
+
+
+class EngineSizeCreate(BaseModel):
+    cc: int
+    label: str

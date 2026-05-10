@@ -7,7 +7,10 @@ from app.models.product import Product, ProductImage, ProductVariant, ProductFit
 from app.schemas.product import (
     ProductOut, ProductCreate, ProductUpdate, ProductListOut,
     CategoryOut, ReviewCreate, ReviewOut,
-    MotorcycleBrandOut, MotorcycleModelOut, EngineSizeOut
+    MotorcycleBrandOut, MotorcycleModelOut, EngineSizeOut,
+    MotorcycleBrandCreate, MotorcycleBrandUpdate,
+    MotorcycleModelCreate, MotorcycleModelUpdate,
+    EngineSizeCreate,
 )
 from app.utils.jwt import get_current_user_id, require_admin
 from app.utils.cloudinary import upload_image
@@ -38,55 +41,117 @@ def list_engines(db: Session = Depends(get_db)):
     return db.query(EngineSize).order_by(EngineSize.cc).all()
 
 
-# ── Admin CRUD for motorcycle data ──────────────────────────────────────────
+# ── Motorcycle Brand CRUD (admin) ─────────────────────────────────────────────
 
-@router.post("/motorcycle/brands")
-def create_brand(payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    brand = MotorcycleBrand(name=payload["name"], logo_url=payload.get("logo_url"))
-    db.add(brand); db.commit(); db.refresh(brand)
+@router.post("/motorcycle/brands", response_model=MotorcycleBrandOut)
+def create_brand(payload: MotorcycleBrandCreate, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    existing = db.query(MotorcycleBrand).filter(MotorcycleBrand.name == payload.name).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Brand name already exists")
+    brand = MotorcycleBrand(name=payload.name)
+    db.add(brand)
+    db.commit()
+    db.refresh(brand)
     return brand
 
-@router.put("/motorcycle/brands/{brand_id}")
-def update_brand(brand_id: int, payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    brand = db.query(MotorcycleBrand).filter_by(id=brand_id).first()
-    if not brand: raise HTTPException(404)
-    for k, v in payload.items(): setattr(brand, k, v)
-    db.commit(); db.refresh(brand); return brand
+
+@router.put("/motorcycle/brands/{brand_id}", response_model=MotorcycleBrandOut)
+def update_brand(brand_id: int, payload: MotorcycleBrandUpdate, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    brand = db.query(MotorcycleBrand).filter(MotorcycleBrand.id == brand_id).first()
+    if not brand:
+        raise HTTPException(status_code=404, detail="Brand not found")
+    if payload.name:
+        brand.name = payload.name
+    db.commit()
+    db.refresh(brand)
+    return brand
+
 
 @router.delete("/motorcycle/brands/{brand_id}")
 def delete_brand(brand_id: int, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    brand = db.query(MotorcycleBrand).filter_by(id=brand_id).first()
-    if not brand: raise HTTPException(404)
-    db.delete(brand); db.commit(); return {"ok": True}
+    brand = db.query(MotorcycleBrand).filter(MotorcycleBrand.id == brand_id).first()
+    if not brand:
+        raise HTTPException(status_code=404, detail="Brand not found")
+    db.delete(brand)
+    db.commit()
+    return {"detail": "Brand deleted"}
 
-@router.post("/motorcycle/models")
-def create_model(payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    model = MotorcycleModel(name=payload["name"], brand_id=payload["brand_id"], year_start=payload.get("year_start"), year_end=payload.get("year_end"))
-    db.add(model); db.commit(); db.refresh(model); return model
 
-@router.put("/motorcycle/models/{model_id}")
-def update_model(model_id: int, payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    model = db.query(MotorcycleModel).filter_by(id=model_id).first()
-    if not model: raise HTTPException(404)
-    for k, v in payload.items(): setattr(model, k, v)
-    db.commit(); db.refresh(model); return model
+@router.post("/motorcycle/brands/{brand_id}/logo", response_model=MotorcycleBrandOut)
+async def upload_brand_logo(
+    brand_id: int,
+    file: UploadFile = File(...),
+    admin_id: int = Depends(require_admin),
+    db: Session = Depends(get_db),
+):
+    brand = db.query(MotorcycleBrand).filter(MotorcycleBrand.id == brand_id).first()
+    if not brand:
+        raise HTTPException(status_code=404, detail="Brand not found")
+    result = await upload_image(file, folder="mufflux/brands")
+    brand.logo_url = result["image_url"]
+    db.commit()
+    db.refresh(brand)
+    return brand
+
+
+# ── Motorcycle Model CRUD (admin) ─────────────────────────────────────────────
+
+@router.post("/motorcycle/models", response_model=MotorcycleModelOut)
+def create_model(payload: MotorcycleModelCreate, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    brand = db.query(MotorcycleBrand).filter(MotorcycleBrand.id == payload.brand_id).first()
+    if not brand:
+        raise HTTPException(status_code=404, detail="Brand not found")
+    model = MotorcycleModel(**payload.model_dump())
+    db.add(model)
+    db.commit()
+    db.refresh(model)
+    return model
+
+
+@router.put("/motorcycle/models/{model_id}", response_model=MotorcycleModelOut)
+def update_model(model_id: int, payload: MotorcycleModelUpdate, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    model = db.query(MotorcycleModel).filter(MotorcycleModel.id == model_id).first()
+    if not model:
+        raise HTTPException(status_code=404, detail="Model not found")
+    for field, value in payload.model_dump(exclude_none=True).items():
+        setattr(model, field, value)
+    db.commit()
+    db.refresh(model)
+    return model
+
 
 @router.delete("/motorcycle/models/{model_id}")
 def delete_model(model_id: int, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    model = db.query(MotorcycleModel).filter_by(id=model_id).first()
-    if not model: raise HTTPException(404)
-    db.delete(model); db.commit(); return {"ok": True}
+    model = db.query(MotorcycleModel).filter(MotorcycleModel.id == model_id).first()
+    if not model:
+        raise HTTPException(status_code=404, detail="Model not found")
+    db.delete(model)
+    db.commit()
+    return {"detail": "Model deleted"}
 
-@router.post("/motorcycle/engines")
-def create_engine(payload: dict, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    engine = EngineSize(cc=payload["cc"], label=payload.get("label", f"{payload['cc']}cc"))
-    db.add(engine); db.commit(); db.refresh(engine); return engine
+
+# ── Engine Size CRUD (admin) ───────────────────────────────────────────────────
+
+@router.post("/motorcycle/engines", response_model=EngineSizeOut)
+def create_engine(payload: EngineSizeCreate, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
+    existing = db.query(EngineSize).filter(EngineSize.cc == payload.cc).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Engine size already exists")
+    engine = EngineSize(**payload.model_dump())
+    db.add(engine)
+    db.commit()
+    db.refresh(engine)
+    return engine
+
 
 @router.delete("/motorcycle/engines/{engine_id}")
 def delete_engine(engine_id: int, admin_id: int = Depends(require_admin), db: Session = Depends(get_db)):
-    engine = db.query(EngineSize).filter_by(id=engine_id).first()
-    if not engine: raise HTTPException(404)
-    db.delete(engine); db.commit(); return {"ok": True}
+    engine = db.query(EngineSize).filter(EngineSize.id == engine_id).first()
+    if not engine:
+        raise HTTPException(status_code=404, detail="Engine size not found")
+    db.delete(engine)
+    db.commit()
+    return {"detail": "Engine size deleted"}
 
 
 @router.get("/products", response_model=List[ProductListOut])

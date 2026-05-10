@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@heroui/react";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { authApi } from "@/lib/api";
@@ -40,11 +41,8 @@ export default function LoginPage() {
       <div className="w-full max-w-sm relative z-10">
         {/* Logo */}
         <div className="text-center mb-10">
-          <Link href="/">
-            <div className="inline-block">
-              <span className="font-black text-4xl tracking-widest text-foreground drop-shadow-lg">MUFFLUX</span>
-              <div className="h-0.5 bg-gradient-to-r from-transparent via-[#D400A8] to-transparent mt-1" />
-            </div>
+          <Link href="/" className="inline-block">
+            <Image src="/mufflux.png" alt="Mufflux" width={200} height={66} className="object-contain mx-auto" priority />
           </Link>
           <p className="text-foreground/40 mt-3 text-sm font-medium tracking-wide">Sign in to your account</p>
         </div>

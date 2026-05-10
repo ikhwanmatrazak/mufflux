@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 space-y-4">
-            <Image src="/mufflux.jpeg" alt="Mufflux" width={110} height={36} className="object-contain" />
+            <Image src="/mufflux.png" alt="Mufflux" width={110} height={36} className="object-contain" />
             <p className="text-foreground/50 text-sm leading-relaxed">
               Malaysian Performance Exhaust Brand. PERFORMANCE. MEROKET. Est. 2024.
             </p>
