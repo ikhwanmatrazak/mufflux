@@ -42,6 +42,16 @@ export default function HomePage() {
         />
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto animate-fade-in">
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/mufflux.jpeg"
+              alt="Mufflux Logo"
+              width={220}
+              height={220}
+              className="object-contain drop-shadow-[0_0_40px_rgba(212,0,168,0.6)]"
+              priority
+            />
+          </div>
           <Chip color="secondary" variant="flat" size="sm" className="mb-6 font-bold tracking-widest uppercase text-xs">
             Malaysian Performance Exhaust Brand
           </Chip>
